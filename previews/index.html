@@ -112,7 +112,7 @@
       align-items: center;
       gap: 12px;
       min-width: 0;
-      font-weight: 900;
+      font-weight: 760;
     }
 
     .brand-mark {
@@ -131,7 +131,7 @@
       margin-top: 2px;
       color: var(--muted);
       font-size: 11px;
-      font-weight: 850;
+      font-weight: 680;
     }
 
     .nav-links {
@@ -140,7 +140,7 @@
       gap: 18px;
       color: var(--body);
       font-size: 14px;
-      font-weight: 850;
+      font-weight: 700;
     }
 
     .nav-links a {
@@ -157,10 +157,10 @@
     .hero {
       position: relative;
       display: grid;
-      grid-template-columns: minmax(0, .96fr) minmax(420px, 1.04fr);
-      gap: 42px;
+      grid-template-columns: minmax(0, .94fr) minmax(420px, 1.06fr);
+      gap: 38px;
       align-items: center;
-      padding: 58px 0 42px;
+      padding: 48px 0 38px;
     }
 
     body.heritage .hero {
@@ -178,7 +178,7 @@
       margin-bottom: 18px;
       color: var(--accent);
       font-size: 13px;
-      font-weight: 950;
+      font-weight: 800;
     }
 
     .eyebrow::before {
@@ -191,30 +191,30 @@
     h1 {
       max-width: 660px;
       margin-bottom: 18px;
-      font-family: "Iowan Old Style", Georgia, serif;
-      font-size: clamp(38px, 4.45vw, 62px);
-      line-height: 1;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 3.7vw, 52px);
+      line-height: 1.07;
       letter-spacing: 0;
     }
 
     body.heritage h1 {
       max-width: 560px;
-      font-size: clamp(37px, 4.1vw, 58px);
+      font-size: clamp(34px, 3.65vw, 50px);
     }
 
     body.clean h1 {
       max-width: 610px;
       font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
-      font-size: clamp(35px, 3.8vw, 54px);
-      line-height: 1.04;
-      font-weight: 900;
+      font-size: clamp(32px, 3.45vw, 48px);
+      line-height: 1.08;
+      font-weight: 820;
     }
 
     .lead {
       max-width: 670px;
       margin-bottom: 24px;
       color: var(--body);
-      font-size: 20px;
+      font-size: 18px;
       line-height: 1.55;
     }
 
@@ -235,7 +235,7 @@
       border-radius: 999px;
       background: var(--deep);
       color: #fffdf8;
-      font-weight: 950;
+      font-weight: 820;
       box-shadow: 0 12px 28px rgba(45, 79, 69, .2);
     }
 
@@ -246,34 +246,36 @@
     }
 
     .quick-facts {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
       max-width: 690px;
     }
 
     .fact {
       min-width: 0;
       border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 13px 14px;
-      background: rgba(255, 253, 248, .75);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(255, 253, 248, .58);
     }
 
     .fact strong {
-      display: block;
+      display: inline;
       color: var(--ink);
-      font-family: "Iowan Old Style", Georgia, serif;
-      font-size: 21px;
-      line-height: 1.04;
+      font-family: inherit;
+      font-size: 13px;
+      line-height: 1;
+      font-weight: 850;
     }
 
     .fact span {
-      display: block;
-      margin-top: 3px;
+      display: inline;
+      margin-top: 0;
+      margin-left: 6px;
       color: var(--muted);
       font-size: 12px;
-      font-weight: 850;
+      font-weight: 700;
     }
 
     .hero-photo {
@@ -284,7 +286,7 @@
     .photo-frame {
       overflow: hidden;
       border: 1px solid var(--line);
-      border-radius: 28px;
+      border-radius: 22px;
       background: var(--white);
       box-shadow: var(--shadow);
       transform: rotate(.7deg);
@@ -304,19 +306,19 @@
 
     .photo-frame img {
       width: 100%;
-      aspect-ratio: 1.05 / .86;
+      aspect-ratio: 1.08 / .78;
       object-fit: cover;
     }
 
     .photo-note {
       position: absolute;
-      left: -22px;
-      bottom: 24px;
-      width: min(292px, 72%);
+      left: 18px;
+      bottom: 18px;
+      width: min(340px, calc(100% - 36px));
       border: 1px solid rgba(255,255,255,.5);
-      border-radius: 18px;
-      padding: 17px 18px;
-      background: rgba(32, 24, 22, .9);
+      border-radius: 14px;
+      padding: 14px 15px;
+      background: rgba(32, 24, 22, .82);
       color: #fffaf1;
       box-shadow: 0 18px 40px rgba(32, 24, 22, .24);
     }
@@ -339,20 +341,20 @@
     .photo-note strong {
       display: block;
       margin-bottom: 4px;
-      font-family: "Iowan Old Style", Georgia, serif;
-      font-size: 23px;
-      line-height: 1.05;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      line-height: 1.1;
     }
 
     .photo-note span {
       display: block;
       color: rgba(255,250,241,.77);
-      font-size: 14px;
-      font-weight: 700;
+      font-size: 13px;
+      font-weight: 650;
     }
 
     .section {
-      padding: 48px 0;
+      padding: 40px 0;
       border-top: 1px solid var(--line);
     }
 
@@ -367,14 +369,14 @@
     .section-kicker {
       color: var(--accent);
       font-size: 12px;
-      font-weight: 950;
+      font-weight: 800;
       text-transform: uppercase;
     }
 
     h2 {
       margin-bottom: 9px;
-      font-family: "Iowan Old Style", Georgia, serif;
-      font-size: clamp(31px, 3.8vw, 46px);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(29px, 3.35vw, 42px);
       line-height: 1.04;
       letter-spacing: 0;
     }
@@ -394,8 +396,8 @@
 
     .puppy-grid {
       display: grid;
-      grid-template-columns: 1.1fr .9fr .9fr;
-      gap: 18px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
     }
 
     .puppy-card {
@@ -423,18 +425,14 @@
       grid-row: auto;
     }
 
-    .puppy-card:first-child {
-      grid-row: span 2;
-    }
-
     .puppy-card img {
       width: 100%;
-      height: 230px;
+      height: 250px;
       object-fit: cover;
     }
 
     .puppy-card:first-child img {
-      height: 410px;
+      height: 250px;
     }
 
     .puppy-body {
@@ -451,13 +449,13 @@
       background: var(--sage);
       color: var(--deep);
       font-size: 12px;
-      font-weight: 950;
+      font-weight: 800;
     }
 
     h3 {
       margin-bottom: 8px;
-      font-family: "Iowan Old Style", Georgia, serif;
-      font-size: 25px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
       line-height: 1.05;
       letter-spacing: 0;
     }
@@ -540,8 +538,8 @@
       display: block;
       margin-bottom: 4px;
       color: var(--ink);
-      font-family: "Iowan Old Style", Georgia, serif;
-      font-size: 22px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
       line-height: 1.04;
     }
 
@@ -559,7 +557,7 @@
       color: var(--accent);
       font-size: 12px;
       font-style: normal;
-      font-weight: 950;
+      font-weight: 800;
       white-space: nowrap;
     }
 
@@ -737,7 +735,7 @@
       h1 {
         width: min(100%, 360px);
         max-width: min(100%, 360px);
-        font-size: 30px;
+        font-size: 27px;
         line-height: 1.08;
         overflow-wrap: anywhere;
       }
@@ -745,7 +743,7 @@
       .lead {
         width: min(100%, 360px);
         max-width: min(100%, 360px);
-        font-size: 17px;
+        font-size: 16px;
         overflow-wrap: anywhere;
       }
 
@@ -763,17 +761,13 @@
         grid-template-columns: 1fr;
       }
 
-      .quick-facts {
-        display: none;
-      }
-
       .puppy-card:first-child {
         grid-column: auto;
       }
 
       .puppy-card:first-child img,
       .puppy-card img {
-        height: 220px;
+        height: 218px;
       }
 
       .photo-frame {
@@ -922,8 +916,8 @@
         subhead: "Mini dachshunds in Mississippi",
         eyebrow: "Home-raised miniature dachshunds",
         source: "https://www.happily-ever-after-dachshunds.com/",
-        title: "Miniature dachshund puppies raised at home with care.",
-        lead: "See current puppies, read the care basics, and contact Lyn when the timing feels right.",
+        title: "Mini dachshunds, raised at home by Lyn.",
+        lead: "Current puppy notes, care basics, and a direct way to ask Lyn about timing.",
         heroImage: "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_0663-high.jpg?enable-io=true&enable=upscale&crop=0.8333%3A1&width=900",
         heroAlt: "Happily Ever After Dachshunds puppy",
         photoTitle: "Small litters, clear next steps.",
@@ -933,7 +927,7 @@
           ["Mini dachshunds", "breed focus"],
           ["Call Lyn", "next step"]
         ],
-        puppyTitle: "Current puppies and litter notes",
+        puppyTitle: "Puppy notes, status, and care basics",
         puppyIntro: "Families can scan who is available, what comes with each puppy, and how to ask about timing.",
         puppyNote: "Available, reserved, and upcoming notes stay current.",
         careTitle: "Care details families ask about first",
@@ -974,14 +968,14 @@
         subhead: "Aussies and AKC dachshunds in Arizona",
         eyebrow: "Breed paths for busy families",
         source: "https://www.deserthorizonaussies.com/available-puppies",
-        title: "Dachshund puppies, care notes, and contact in one route.",
-        lead: "Arizona families can check the dachshund path, scan AKC and care basics, and reach Mary or Dave from the same page.",
+        title: "A clear dachshund path for Arizona families.",
+        lead: "Dachshund families get the essentials first: availability, AKC notes, care basics, and Mary or Dave's contact route.",
         heroImage: "https://static.wixstatic.com/media/1c6923_aa9e412100154d91bd09693a403ff48f~mv2.jpg/v1/crop/x_0,y_0,w_1101,h_1743/fill/w_520,h_720,al_c,q_80,enc_avif,quality_auto/311820885_6135099696504676_3264293825314376773_n.jpg",
         heroAlt: "Desert Horizon dachshund",
         photoTitle: "A dedicated dachshund path.",
         photoText: "Puppy status, care basics, and the contact route stay focused on dachshunds.",
         facts: [["Arizona", "home base"], ["AKC notes", "care cue"], ["Phone and email", "next step"]],
-        puppyTitle: "Dachshund availability",
+        puppyTitle: "Availability, care, and contact",
         puppyIntro: "AKC notes, vaccines, microchip, and home-raised details sit beside the puppy decision.",
         puppyNote: "A separate route keeps dachshund families oriented.",
         careTitle: "Care basics without the hunt",
@@ -1001,7 +995,7 @@
         contactHref: "https://www.deserthorizonaussies.com/available-puppies",
         footer: "Desert Horizon Aussies & Dachshunds • Arizona",
         puppies: [
-          ["Dachshund availability", "A direct dachshund section keeps visitors from sorting through unrelated pages.", "Available / planned", "https://static.wixstatic.com/media/1c6923_aa9e412100154d91bd09693a403ff48f~mv2.jpg/v1/crop/x_0,y_0,w_1101,h_1743/fill/w_520,h_720,al_c,q_80,enc_avif,quality_auto/311820885_6135099696504676_3264293825314376773_n.jpg"],
+          ["Availability, care, and contact", "A direct dachshund section keeps visitors from sorting through unrelated pages.", "Available / planned", "https://static.wixstatic.com/media/1c6923_aa9e412100154d91bd09693a403ff48f~mv2.jpg/v1/crop/x_0,y_0,w_1101,h_1743/fill/w_520,h_720,al_c,q_80,enc_avif,quality_auto/311820885_6135099696504676_3264293825314376773_n.jpg"],
           ["Testing and care", "Testing, vaccines, microchip, and home care work best as grouped trust cues.", "Care proof", "https://static.wixstatic.com/media/1c6923_7dc0ea6e899e45b6b6434a699c9b6e69~mv2.jpg/v1/fill/w_700,h_360,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Bred%20With%20Heart%20Aussies%202023.jpg"],
           ["Contact route", "Phone and email stay near the puppy section so the next step is not a hunt.", "Call or email", "https://static.wixstatic.com/media/1c6923_aa6695c712ae4734bf8f7e1c09c52661~mv2.jpg/v1/fill/w_900,h_320,al_c,q_80,enc_avif,quality_auto/a-painted-desert-saija-lehtonen.jpg"]
         ],
@@ -1022,14 +1016,14 @@
         subhead: "Health-first dachshund breeding",
         eyebrow: "Health story meets puppy status",
         source: "https://premierdnacanines.com/",
-        title: "Health-tested dachshunds with a clear path to the right litter.",
-        lead: "Families can see current status, health proof, planned litters, and the waitlist path without guessing what to do next.",
+        title: "Health-tested dachshunds, current litter status.",
+        lead: "Litter status without guessing paths sit beside the health proof families look for.",
         heroImage: "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/family-puppy1.ec53074a8b604450b33d2b82cd2ae9cb.85f6c9db0561e597.a6948e40.png",
         heroAlt: "Premier DNA Canines puppy",
         photoTitle: "Health proof beside status.",
         photoText: "Screening, guarantee, and litter timing live in the same flow.",
         facts: [["Health-tested", "trust cue"], ["Status clarity", "buyer path"], ["Waitlist", "next step"]],
-        puppyTitle: "Current, sold, planned, and waitlist",
+        puppyTitle: "Litter status without guessing",
         puppyIntro: "Families can see whether to inquire now, wait for a planned litter, or join the list.",
         puppyNote: "Structured, bright, and fast to scan.",
         careTitle: "Health proof at the decision point",
