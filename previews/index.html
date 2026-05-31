@@ -157,18 +157,18 @@
     .hero {
       position: relative;
       display: grid;
-      grid-template-columns: minmax(0, .9fr) minmax(420px, 1.1fr);
-      gap: 46px;
+      grid-template-columns: minmax(0, .96fr) minmax(420px, 1.04fr);
+      gap: 42px;
       align-items: center;
       padding: 58px 0 42px;
     }
 
     body.heritage .hero {
-      grid-template-columns: minmax(0, .82fr) minmax(430px, 1.18fr);
+      grid-template-columns: minmax(0, .9fr) minmax(430px, 1.1fr);
     }
 
     body.clean .hero {
-      grid-template-columns: minmax(0, .95fr) minmax(420px, 1.05fr);
+      grid-template-columns: minmax(0, 1fr) minmax(410px, 1fr);
     }
 
     .eyebrow {
@@ -192,9 +192,22 @@
       max-width: 660px;
       margin-bottom: 18px;
       font-family: "Iowan Old Style", Georgia, serif;
-      font-size: clamp(43px, 5vw, 76px);
-      line-height: .96;
+      font-size: clamp(38px, 4.45vw, 62px);
+      line-height: 1;
       letter-spacing: 0;
+    }
+
+    body.heritage h1 {
+      max-width: 560px;
+      font-size: clamp(37px, 4.1vw, 58px);
+    }
+
+    body.clean h1 {
+      max-width: 610px;
+      font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+      font-size: clamp(35px, 3.8vw, 54px);
+      line-height: 1.04;
+      font-weight: 900;
     }
 
     .lead {
@@ -299,7 +312,7 @@
       position: absolute;
       left: -22px;
       bottom: 24px;
-      width: min(300px, 74%);
+      width: min(292px, 72%);
       border: 1px solid rgba(255,255,255,.5);
       border-radius: 18px;
       padding: 17px 18px;
@@ -327,7 +340,7 @@
       display: block;
       margin-bottom: 4px;
       font-family: "Iowan Old Style", Georgia, serif;
-      font-size: 25px;
+      font-size: 23px;
       line-height: 1.05;
     }
 
@@ -361,8 +374,8 @@
     h2 {
       margin-bottom: 9px;
       font-family: "Iowan Old Style", Georgia, serif;
-      font-size: clamp(34px, 4.4vw, 54px);
-      line-height: 1;
+      font-size: clamp(31px, 3.8vw, 46px);
+      line-height: 1.04;
       letter-spacing: 0;
     }
 
@@ -406,6 +419,10 @@
       box-shadow: 0 10px 28px rgba(22, 79, 85, .06);
     }
 
+    body.clean .puppy-card:first-child {
+      grid-row: auto;
+    }
+
     .puppy-card:first-child {
       grid-row: span 2;
     }
@@ -440,7 +457,7 @@
     h3 {
       margin-bottom: 8px;
       font-family: "Iowan Old Style", Georgia, serif;
-      font-size: 29px;
+      font-size: 25px;
       line-height: 1.05;
       letter-spacing: 0;
     }
@@ -466,7 +483,7 @@
 
     .care-panel h3 {
       color: #fffdf8;
-      font-size: 38px;
+      font-size: 32px;
     }
 
     .care-panel p {
@@ -524,7 +541,7 @@
       margin-bottom: 4px;
       color: var(--ink);
       font-family: "Iowan Old Style", Georgia, serif;
-      font-size: 25px;
+      font-size: 22px;
       line-height: 1.04;
     }
 
@@ -718,17 +735,17 @@
       }
 
       h1 {
-        width: min(100%, 350px);
-        max-width: min(100%, 350px);
-        font-size: 34px;
-        line-height: 1.03;
+        width: min(100%, 360px);
+        max-width: min(100%, 360px);
+        font-size: 30px;
+        line-height: 1.08;
         overflow-wrap: anywhere;
       }
 
       .lead {
-        width: min(100%, 350px);
-        max-width: min(100%, 350px);
-        font-size: 18px;
+        width: min(100%, 360px);
+        max-width: min(100%, 360px);
+        font-size: 17px;
         overflow-wrap: anywhere;
       }
 
@@ -746,13 +763,17 @@
         grid-template-columns: 1fr;
       }
 
+      .quick-facts {
+        display: none;
+      }
+
       .puppy-card:first-child {
         grid-column: auto;
       }
 
       .puppy-card:first-child img,
       .puppy-card img {
-        height: 245px;
+        height: 220px;
       }
 
       .photo-frame {
@@ -902,33 +923,33 @@
         eyebrow: "Home-raised miniature dachshunds",
         source: "https://www.happily-ever-after-dachshunds.com/",
         title: "Miniature dachshund puppies raised at home with care.",
-        lead: "See current puppies, understand the health guarantee, and contact Lyn when you are ready to ask about a litter.",
+        lead: "See current puppies, read the care basics, and contact Lyn when the timing feels right.",
         heroImage: "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_0663-high.jpg?enable-io=true&enable=upscale&crop=0.8333%3A1&width=900",
         heroAlt: "Happily Ever After Dachshunds puppy",
-        photoTitle: "Puppy first, care close behind.",
-        photoText: "Families should not have to hunt for availability, health notes, or the right way to reach the breeder.",
+        photoTitle: "Small litters, clear next steps.",
+        photoText: "Current puppy notes, care details, and Lyn's contact path stay together.",
         facts: [
           ["Mississippi", "home base"],
           ["Mini dachshunds", "breed focus"],
           ["Call Lyn", "next step"]
         ],
-        puppyTitle: "Current puppies and litter updates in one calm place.",
-        puppyIntro: "The page should make status, ready windows, and contact path obvious before a family calls.",
-        puppyNote: "Status should feel current even when a litter is sold or upcoming.",
-        careTitle: "The details families want before they call.",
-        careIntro: "Health guarantee, home care, deposit expectations, and pickup notes work best beside the puppy decision.",
-        careNote: "Plain care details reduce repeat questions without sounding like a form packet.",
+        puppyTitle: "Current puppies and litter notes",
+        puppyIntro: "Families can scan who is available, what comes with each puppy, and how to ask about timing.",
+        puppyNote: "Available, reserved, and upcoming notes stay current.",
+        careTitle: "Care details families ask about first",
+        careIntro: "Health guarantee, home care, deposit expectations, and pickup notes are grouped where families are already reading.",
+        careNote: "Plain care details, not a form packet.",
         carePanelTitle: "Before you ask about a puppy",
-        carePanelText: "A strong breeder page gives families enough context to ask better questions and lets the breeder spend less time repeating basics.",
+        carePanelText: "Families get the basics before they call, so the first conversation can be about fit and timing.",
         carePanel: ["Health guarantee and vet care", "Home-raised routine and socialization", "Deposit, pickup, and go-home expectations"],
-        storyTitle: "A breeder story that feels personal, not buried.",
-        storyText: "Happily Ever After already has the ingredients families look for: a named breeder, real puppies, and clear care expectations. The site should bring that warmth forward before the inquiry.",
+        storyTitle: "Raised by Lyn, shown plainly",
+        storyText: "Lyn's puppies are the center of the page: real photos, simple care notes, and a direct way for families to ask about a litter.",
         storyCardTitle: "What belongs near the top",
         storyList: ["Who raises the puppies", "How families reserve or ask questions", "What care comes before go-home day"],
-        stepsTitle: "How families move from looking to asking.",
-        stepsIntro: "Simple steps make the page feel trustworthy and reduce low-fit inquiries.",
+        stepsTitle: "From looking to asking",
+        stepsIntro: "Three short steps keep the inquiry process calm.",
         contactTitle: "Ready to ask Lyn about a puppy?",
-        contactText: "Review the current puppy details and care notes, then call or email when you are ready to talk about availability.",
+        contactText: "Review the puppy details and care notes, then call or email when you are ready to talk about availability.",
         contactHref: "https://www.happily-ever-after-dachshunds.com/",
         footer: "Happily Ever After Dachshunds • Miniature dachshunds in Mississippi",
         puppies: [
@@ -938,8 +959,8 @@
         ],
         trust: [
           ["Are puppies available?", "Current status belongs near the top, not hidden behind old updates.", "Availability"],
-          ["Who raises them?", "The breeder story and care routine should sit near the puppy photos.", "Home care"],
-          ["What happens next?", "The call, deposit, and pickup path should feel simple.", "Contact"]
+          ["Who raises them?", "The breeder story and care routine sit near the puppy photos.", "Home care"],
+          ["What happens next?", "The call, deposit, and pickup path feel simple.", "Contact"]
         ],
         steps: [
           ["See who is available", "Check current puppy or litter status first."],
@@ -953,30 +974,30 @@
         subhead: "Aussies and AKC dachshunds in Arizona",
         eyebrow: "Breed paths for busy families",
         source: "https://www.deserthorizonaussies.com/available-puppies",
-        title: "A clearer dachshund page for families ready to call.",
-        lead: "Dachshund visitors should see availability, care standards, and Mary and Dave's contact route without sorting through the whole site.",
+        title: "Dachshund puppies, care notes, and contact in one route.",
+        lead: "Arizona families can check the dachshund path, scan AKC and care basics, and reach Mary or Dave from the same page.",
         heroImage: "https://static.wixstatic.com/media/1c6923_aa9e412100154d91bd09693a403ff48f~mv2.jpg/v1/crop/x_0,y_0,w_1101,h_1743/fill/w_520,h_720,al_c,q_80,enc_avif,quality_auto/311820885_6135099696504676_3264293825314376773_n.jpg",
         heroAlt: "Desert Horizon dachshund",
-        photoTitle: "One breed path, fewer dead ends.",
-        photoText: "A breed-specific page keeps families focused on the puppies and care details they came to see.",
+        photoTitle: "A dedicated dachshund path.",
+        photoText: "Puppy status, care basics, and the contact route stay focused on dachshunds.",
         facts: [["Arizona", "home base"], ["AKC notes", "care cue"], ["Phone and email", "next step"]],
-        puppyTitle: "Dachshund availability with the basics beside it.",
-        puppyIntro: "AKC, testing, vaccines, microchip, and home-raised notes should be grouped where families make contact decisions.",
-        puppyNote: "Mixed-breed programs need especially clear paths so visitors do not get lost.",
-        careTitle: "Care details made easy to scan.",
-        careIntro: "The good details are already present. The design needs to group them into a stronger trust story.",
-        careNote: "Best fit for the Heritage Kennel lane: grounded, direct, confident.",
+        puppyTitle: "Dachshund availability",
+        puppyIntro: "AKC notes, vaccines, microchip, and home-raised details sit beside the puppy decision.",
+        puppyNote: "A separate route keeps dachshund families oriented.",
+        careTitle: "Care basics without the hunt",
+        careIntro: "Testing, vaccines, microchip, and home care are grouped into one clear trust story.",
+        careNote: "Grounded, direct, and easy to scan.",
         carePanelTitle: "Before families reach out",
-        carePanelText: "The page should tell dachshund families exactly what is included and how to contact the breeder.",
+        carePanelText: "Dachshund families can see what is included and how to contact the breeder without jumping pages.",
         carePanel: ["AKC and testing notes", "Vaccines, microchip, and home care", "Phone and email beside puppy status"],
-        storyTitle: "A larger program still needs a simple route.",
-        storyText: "The site can support both Aussies and dachshunds while giving each visitor a dedicated path to the breed and litter details they care about.",
+        storyTitle: "One program, clear breed routes",
+        storyText: "Aussie and dachshund families need different paths. This page keeps dachshund visitors on the details they came for.",
         storyCardTitle: "What to make visible",
         storyList: ["Breed-specific navigation", "Care standards beside availability", "Phone and email close to the decision point"],
-        stepsTitle: "A shorter path to the right question.",
-        stepsIntro: "Visitors should know whether to ask about a puppy, a planned litter, or the breed program.",
+        stepsTitle: "A shorter path to the right question",
+        stepsIntro: "Families can tell whether to ask about a puppy, a planned litter, or the breed program.",
         contactTitle: "Questions for Mary or Dave?",
-        contactText: "Keep contact beside the dachshund details so families can reach out after reviewing care and status.",
+        contactText: "Contact stays beside the dachshund details so families can reach out after reviewing care and status.",
         contactHref: "https://www.deserthorizonaussies.com/available-puppies",
         footer: "Desert Horizon Aussies & Dachshunds • Arizona",
         puppies: [
@@ -986,8 +1007,8 @@
         ],
         trust: [
           ["Is this the right breed page?", "Make the dachshund path obvious as soon as someone lands.", "Breed path"],
-          ["How are puppies raised?", "Home-raised care and testing should be visible before inquiry.", "Care"],
-          ["Who do I contact?", "Phone and email should be near the decision point.", "Next step"]
+          ["How are puppies raised?", "Home-raised care and testing are visible before inquiry.", "Care"],
+          ["Who do I contact?", "Phone and email stay near the decision point.", "Next step"]
         ],
         steps: [
           ["Pick the breed path", "Dachshund and Aussie visitors get clear routes."],
@@ -1001,28 +1022,28 @@
         subhead: "Health-first dachshund breeding",
         eyebrow: "Health story meets puppy status",
         source: "https://premierdnacanines.com/",
-        title: "Health-tested dachshunds with current status made clear.",
-        lead: "Premier already has a strong care story. The page should make available, sold, planned, and waitlist paths easy to understand.",
+        title: "Health-tested dachshunds with a clear path to the right litter.",
+        lead: "Families can see current status, health proof, planned litters, and the waitlist path without guessing what to do next.",
         heroImage: "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/family-puppy1.ec53074a8b604450b33d2b82cd2ae9cb.85f6c9db0561e597.a6948e40.png",
         heroAlt: "Premier DNA Canines puppy",
-        photoTitle: "Health proof should sit beside status.",
-        photoText: "Families can trust the program faster when screening, guarantee, and litter timing live in the same flow.",
+        photoTitle: "Health proof beside status.",
+        photoText: "Screening, guarantee, and litter timing live in the same flow.",
         facts: [["Health-tested", "trust cue"], ["Status clarity", "buyer path"], ["Waitlist", "next step"]],
-        puppyTitle: "Current, sold, planned, and waitlist each get a place.",
-        puppyIntro: "Families should not have to guess whether to inquire now, wait for a planned litter, or join the list.",
-        puppyNote: "Best fit for the Clean Modern Trust lane: structured, bright, and fast to scan.",
-        careTitle: "Health proof connected to the puppy decision.",
-        careIntro: "The health story is strongest when it appears beside current status and upcoming litter details.",
+        puppyTitle: "Current, sold, planned, and waitlist",
+        puppyIntro: "Families can see whether to inquire now, wait for a planned litter, or join the list.",
+        puppyNote: "Structured, bright, and fast to scan.",
+        careTitle: "Health proof at the decision point",
+        careIntro: "Genetic screening, vet checks, and the health guarantee sit beside current status and upcoming litter details.",
         careNote: "A cleaner structure turns strong breeder practices into visible trust.",
         carePanelTitle: "What families can check first",
-        carePanelText: "Health screening and availability should reinforce each other instead of living on separate islands.",
+        carePanelText: "Health screening and availability reinforce each other instead of living on separate islands.",
         carePanel: ["Genetic screening and vet checks", "Current, sold, and planned litters", "Waitlist path when nothing is available"],
-        storyTitle: "A health-first program needs a health-first layout.",
-        storyText: "Premier's strongest differentiator is care. The page should let that care guide the visitor from puppy photos to the right next step.",
+        storyTitle: "A health-first program, organized",
+        storyText: "Premier's care story guides the visitor from puppy photos to current status, then to the right next step.",
         storyCardTitle: "What to surface",
         storyList: ["Screening and vet-care proof", "Status labels that stay current", "Waitlist route when puppies are sold"],
-        stepsTitle: "Choose the right path without guessing.",
-        stepsIntro: "A structured page keeps families from asking the wrong question at the wrong time.",
+        stepsTitle: "Choose the right path without guessing",
+        stepsIntro: "A structured page helps families choose the right next step for the current litter status.",
         contactTitle: "Choose the right next step.",
         contactText: "If puppies are available, inquire. If they are sold, join the waitlist or check planned litter timing.",
         contactHref: "https://premierdnacanines.com/",
@@ -1106,6 +1127,10 @@
         const img = el("img");
         img.src = puppy[3];
         img.alt = puppy[0];
+        img.onerror = () => {
+          img.onerror = null;
+          img.src = data.heroImage;
+        };
         card.appendChild(img);
         const body = el("div", "puppy-body");
         body.appendChild(el("span", "status", puppy[2]));
