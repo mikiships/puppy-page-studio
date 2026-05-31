@@ -49,7 +49,7 @@
       margin: 0 auto;
       padding: 9px 20px;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       gap: 18px;
     }
 
@@ -58,8 +58,8 @@
     .site {
       min-height: 100vh;
       background:
-        linear-gradient(110deg, rgba(220,232,223,.9), transparent 42%),
-        linear-gradient(250deg, rgba(241,230,213,.85), transparent 48%),
+        radial-gradient(circle at 12% 8%, rgba(220,232,223,.95), transparent 28%),
+        linear-gradient(180deg, rgba(255,254,249,.9), rgba(241,230,213,.58) 72%, rgba(255,254,249,.96)),
         var(--paper);
     }
 
@@ -85,10 +85,13 @@
     }
 
     .brand-mark {
-      width: 36px;
-      height: 36px;
-      border-radius: 11px;
-      background: linear-gradient(135deg, var(--green), #79a178);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 38% 32%, #fff8e6 0 14%, transparent 15%),
+        linear-gradient(135deg, var(--green), #79a178);
+      box-shadow: inset 0 0 0 2px rgba(255,254,249,.72);
     }
 
     .nav-links {
@@ -100,8 +103,7 @@
       font-weight: 850;
     }
 
-    .nav-links a,
-    .switcher button {
+    .nav-links a {
       border: 1px solid rgba(46, 93, 80, .18);
       border-radius: 999px;
       background: rgba(255,255,255,.62);
@@ -112,18 +114,12 @@
       white-space: nowrap;
     }
 
-    .switcher button.active {
-      background: var(--green);
-      border-color: var(--green);
-      color: #fffef9;
-    }
-
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, .95fr) minmax(330px, 1.05fr);
+      grid-template-columns: minmax(0, .85fr) minmax(350px, 1.15fr);
       gap: 40px;
       align-items: center;
-      padding: 52px 0 44px;
+      padding: 58px 0 50px;
     }
 
     .eyebrow {
@@ -136,11 +132,11 @@
     h1, h2, h3, p { margin-top: 0; overflow-wrap: break-word; }
 
     h1 {
-      max-width: 680px;
+      max-width: 620px;
       margin-bottom: 17px;
       font-family: "Iowan Old Style", Georgia, serif;
-      font-size: clamp(42px, 6vw, 78px);
-      line-height: .98;
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1;
       letter-spacing: 0;
     }
 
@@ -180,14 +176,14 @@
       width: 100%;
       overflow: hidden;
       border: 1px solid rgba(24, 33, 31, .12);
-      border-radius: 18px;
+      border-radius: 10px;
       background: var(--white);
       box-shadow: var(--shadow);
     }
 
     .photo-card img {
       width: 100%;
-      aspect-ratio: 1.05 / 1;
+      aspect-ratio: 1.25 / .92;
       object-fit: cover;
     }
 
@@ -251,7 +247,7 @@
     .plain-note {
       min-width: 0;
       border: 1px solid var(--line);
-      border-radius: 14px;
+      border-radius: 8px;
       background: rgba(255,254,249,.84);
       box-shadow: 0 14px 32px rgba(24,33,31,.08);
     }
@@ -401,7 +397,6 @@
       }
       .actions { flex-direction: column; align-items: stretch; }
       .button { width: 100%; }
-      .switcher { display: none; }
       .card img { height: 205px; }
       .photo-card {
         justify-self: start;
@@ -420,26 +415,21 @@
 <body>
   <div class="private-note">
     <div class="inner">
-      <span><b>Private preview.</b> Rough draft from public site info.</span>
-      <span>Puppy Page Studio</span>
+      <span><b>Private preview.</b> A rough replacement site concept built from public information.</span>
     </div>
   </div>
 
-  <div class="site">
+  <div class="site" id="top">
     <header class="wrap nav">
-      <a class="brand" href="https://www.puppypagestudio.com/">
+      <a class="brand" href="#top" aria-label="Home">
         <span class="brand-mark" aria-hidden="true"></span>
         <span id="brandName">Breeder preview</span>
       </a>
       <nav class="nav-links" aria-label="Page navigation">
+        <a href="#top">Home</a>
         <a href="#puppies">Puppies</a>
-        <a href="#trust">What families ask</a>
-        <a href="#steps">Next step</a>
-        <span class="switcher" aria-label="Preview switcher">
-          <button type="button" data-site="happily">Happily</button>
-          <button type="button" data-site="desert">Desert</button>
-          <button type="button" data-site="premier">Premier</button>
-        </span>
+        <a href="#trust">Care</a>
+        <a href="#contact">Contact</a>
       </nav>
     </header>
 
@@ -473,8 +463,8 @@
 
       <section class="wrap section" id="trust">
         <div class="section-head">
-          <h2>What families want to know</h2>
-          <p>Most families are not trying to read a long website. They want to know what is available, whether the breeder is real, and what to do next.</p>
+          <h2>Care details families look for</h2>
+          <p id="trustIntro"></p>
         </div>
         <div class="trust-grid" id="trustGrid"></div>
       </section>
@@ -498,7 +488,7 @@
       </section>
 
       <section class="wrap plain-note">
-        <p><strong>Note from Puppy Page Studio:</strong> This is not meant to be a finished redesign. It is a quick way to show what the page could feel like if puppy status, trust details, and the next step were easier to see on a phone.</p>
+        <p><strong>Private note:</strong> This is a rough page preview, not a finished redesign. The goal is to show how the breeder's own site could feel when puppy status, care details, and the contact step are easy to find.</p>
       </section>
     </main>
   </div>
@@ -509,26 +499,27 @@
         name: "Happily Ever After Dachshunds",
         eyebrow: "Mini dachshunds in Mississippi",
         source: "https://www.happily-ever-after-dachshunds.com/",
-        title: "Mini dachshund puppies from a home that knows care.",
-        lead: "A simpler page can show available puppies, health details, and the adoption step before a family has to call.",
+        title: "Home-raised miniature dachshund puppies in Mississippi.",
+        lead: "See current puppies, read the health guarantee, and contact Lyn when you are ready to ask about a litter.",
         heroImage: "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_0663-high.jpg?enable-io=true&enable=upscale&crop=0.8333%3A1&width=900",
         heroAlt: "Happily Ever After Dachshunds puppy photo",
-        photoText: "A warm first screen with the puppy photo, care promise, and next step together.",
-        photoPill: "Rough preview",
-        puppyTitle: "Available puppies should be easy to scan.",
-        puppyIntro: "Families should not have to piece together status, age, health promise, and pickup details from different parts of the site.",
-        contactTitle: "Interested families can call or email Lyn.",
-        contactText: "The page should make that choice obvious after they understand the puppy and process.",
+        photoText: "Puppy photos, availability, and contact details belong together on the first page.",
+        photoPill: "Private preview",
+        puppyTitle: "Puppies and litter updates",
+        puppyIntro: "A good puppy page should make the basics obvious: who is available, who is reserved, when puppies go home, and how to ask a question.",
+        trustIntro: "Families want a calm, plain answer to the same few questions before they call.",
+        contactTitle: "Ready to ask about a puppy?",
+        contactText: "Call or email Lyn after you have seen the current puppies and care details.",
         contactHref: "https://www.happily-ever-after-dachshunds.com/",
         puppies: [
-          ["Current puppies", "Show each puppy or litter with a clear status, ready window, and one inquiry button.", "Available / reserved / upcoming", "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_1072-standard-ay58uk.jpg"],
-          ["Health promise", "Bring the health guarantee and breeder-care note closer to the puppy section.", "Trust detail", "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_2691-high-xl9eve.jpg"],
-          ["How pickup works", "Put deposit, payment, and pickup expectations in plain words before the call.", "Next step", "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_0663-high.jpg?enable-io=true&enable=upscale&crop=0.8333%3A1&width=900"]
+          ["Current puppies", "Each puppy or litter gets a clear status, ready window, and one inquiry button.", "Available / reserved / upcoming", "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_1072-standard-ay58uk.jpg"],
+          ["Health promise", "Health guarantee, vet care, and breeder background stay close to the puppy photos.", "Care details", "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_2691-high-xl9eve.jpg"],
+          ["Pickup and deposit", "Deposit, payment, and pickup expectations are written in plain language before the call.", "Next step", "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_0663-high.jpg?enable-io=true&enable=upscale&crop=0.8333%3A1&width=900"]
         ],
         trust: [
-          ["Are puppies available?", "Use visible labels instead of making visitors infer status from the page copy."],
-          ["Who raises them?", "The registered nurse breeder detail is strong. It should appear where families are deciding."],
-          ["What happens next?", "Make the call, deposit, and pickup path feel simple, not buried."]
+          ["Are puppies available?", "Visitors should see current status without hunting through old updates."],
+          ["Who raises them?", "The breeder story and care routine should sit near the puppy photos."],
+          ["What happens next?", "The call, deposit, and pickup path should feel simple."]
         ],
         stepsIntro: "Plain steps reduce back-and-forth from families who are not ready or are asking the same basic questions.",
         steps: [
@@ -541,19 +532,20 @@
         name: "Desert Horizon Aussies & Dachshunds",
         eyebrow: "Aussies and AKC dachshunds in Arizona",
         source: "https://www.deserthorizonaussies.com/available-puppies",
-        title: "A focused puppy page for dachshund families.",
-        lead: "A mixed-breed site can still give dachshund buyers a clean path: see availability, understand care, and contact the right person.",
+        title: "Dachshund puppies with a clear path for families.",
+        lead: "Dachshund visitors should quickly see availability, care details, and the right way to contact Mary or Dave.",
         heroImage: "https://static.wixstatic.com/media/1c6923_aa9e412100154d91bd09693a403ff48f~mv2.jpg/v1/crop/x_0,y_0,w_1101,h_1743/fill/w_520,h_720,al_c,q_80,enc_avif,quality_auto/311820885_6135099696504676_3264293825314376773_n.jpg",
         heroAlt: "Desert Horizon dachshund photo",
-        photoText: "A cleaner page can separate dachshund interest from the broader site.",
-        photoPill: "Rough preview",
-        puppyTitle: "Dachshund buyers need their own path.",
-        puppyIntro: "The strongest details are already there: AKC, testing, microchip, vaccinations, and home-raised care. The page just needs to make them easier to find.",
-        contactTitle: "Make it easy to reach Mary or Dave.",
-        contactText: "Families should see the contact route next to the puppy information, not after a long scroll.",
+        photoText: "A breed-specific page keeps dachshund families from getting lost in the larger site.",
+        photoPill: "Private preview",
+        puppyTitle: "A cleaner dachshund page",
+        puppyIntro: "The important details are already there: AKC, testing, microchip, vaccinations, and home-raised care. They should be easy to find.",
+        trustIntro: "This page should make the breeder's care standards visible before someone sends an inquiry.",
+        contactTitle: "Questions for Mary or Dave?",
+        contactText: "The contact route should sit beside the puppy information, not at the end of a long search.",
         contactHref: "https://www.deserthorizonaussies.com/available-puppies",
         puppies: [
-          ["Dachshund availability", "Give dachshund visitors a direct section instead of mixing their path into the whole site.", "Breed path", "https://static.wixstatic.com/media/1c6923_aa9e412100154d91bd09693a403ff48f~mv2.jpg/v1/crop/x_0,y_0,w_1101,h_1743/fill/w_520,h_720,al_c,q_80,enc_avif,quality_auto/311820885_6135099696504676_3264293825314376773_n.jpg"],
+          ["Dachshund availability", "Give dachshund visitors a direct section instead of mixing their path into the whole site.", "Available / planned", "https://static.wixstatic.com/media/1c6923_aa9e412100154d91bd09693a403ff48f~mv2.jpg/v1/crop/x_0,y_0,w_1101,h_1743/fill/w_520,h_720,al_c,q_80,enc_avif,quality_auto/311820885_6135099696504676_3264293825314376773_n.jpg"],
           ["Testing and care", "Put testing, vaccinations, microchip, and home-raised notes in a compact trust section.", "Care proof", "https://static.wixstatic.com/media/1c6923_7dc0ea6e899e45b6b6434a699c9b6e69~mv2.jpg/v1/fill/w_700,h_360,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Bred%20With%20Heart%20Aussies%202023.jpg"],
           ["Contact info", "Keep phone and email visible when the visitor is looking at available puppies.", "Next step", "https://static.wixstatic.com/media/1c6923_aa6695c712ae4734bf8f7e1c09c52661~mv2.jpg/v1/fill/w_900,h_320,al_c,q_80,enc_avif,quality_auto/a-painted-desert-saija-lehtonen.jpg"]
         ],
@@ -573,16 +565,17 @@
         name: "Premier DNA Canines",
         eyebrow: "Health-first dachshund breeding",
         source: "https://premierdnacanines.com/",
-        title: "Health proof and puppy status on one clear page.",
-        lead: "Premier already has a strong health story. The page can make current status, upcoming litters, and the inquiry step easier to understand.",
+        title: "Health-tested dachshunds, with status shown clearly.",
+        lead: "Premier already has a strong health story. The page should make current puppies, planned litters, and the waitlist easy to understand.",
         heroImage: "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/family-puppy1.ec53074a8b604450b33d2b82cd2ae9cb.85f6c9db0561e597.a6948e40.png",
         heroAlt: "Premier DNA Canines puppy photo",
-        photoText: "A health-first page should still make the next step simple.",
-        photoPill: "Rough preview",
-        puppyTitle: "Show current status without making families guess.",
-        puppyIntro: "Sold puppies, upcoming litters, and waitlist interest should each have a clear place so families know what to do next.",
-        contactTitle: "Help families choose the right next step.",
-        contactText: "If puppies are sold, point people to the waitlist. If a litter is planned, make the timing clear.",
+        photoText: "A health-first page can still make the next step simple.",
+        photoPill: "Private preview",
+        puppyTitle: "Current status and upcoming litters",
+        puppyIntro: "Available, sold, planned, and waitlist should each have a clear place so families know what to do next.",
+        trustIntro: "The health story matters most when families can see it right next to the puppy decision.",
+        contactTitle: "Choose the right next step",
+        contactText: "If puppies are sold, join the waitlist. If a litter is planned, make the timing clear.",
         contactHref: "https://premierdnacanines.com/",
         puppies: [
           ["Current status", "Separate available, sold, and upcoming puppies so the page feels current.", "Status clarity", "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/family-puppy2.ec53074a8b604450b33d2b82cd2ae9cb.d7bf037dde64a4e164ad0d8f4aca.png"],
@@ -620,10 +613,6 @@
       document.title = data.name + " Preview";
       history.replaceState(null, "", "?site=" + siteKey);
 
-      document.querySelectorAll(".switcher button").forEach((button) => {
-        button.classList.toggle("active", button.dataset.site === siteKey);
-      });
-
       document.getElementById("brandName").textContent = data.name;
       document.getElementById("eyebrow").textContent = data.eyebrow;
       document.getElementById("heroTitle").textContent = data.title;
@@ -635,6 +624,7 @@
       document.getElementById("photoPill").textContent = data.photoPill;
       document.getElementById("puppyTitle").textContent = data.puppyTitle;
       document.getElementById("puppyIntro").textContent = data.puppyIntro;
+      document.getElementById("trustIntro").textContent = data.trustIntro;
       document.getElementById("stepsIntro").textContent = data.stepsIntro;
       document.getElementById("contactTitle").textContent = data.contactTitle;
       document.getElementById("contactText").textContent = data.contactText;
@@ -677,10 +667,6 @@
         stepsGrid.appendChild(card);
       });
     }
-
-    document.querySelectorAll(".switcher button").forEach((button) => {
-      button.addEventListener("click", () => render(button.dataset.site));
-    });
 
     render(active);
   </script>
