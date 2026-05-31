@@ -545,6 +545,16 @@
 
     @media (max-width: 560px) {
       .wrap { padding: 0 16px; }
+      .notice { font-size: 12px; }
+      .notice span,
+      .proof-note {
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+      .switcher {
+        max-width: calc(100vw - 32px);
+      }
       .hero { padding-top: 32px; }
       h1 {
         font-size: 29px;
@@ -558,6 +568,12 @@
       }
       .mock-browser {
         max-width: calc(100vw - 32px);
+      }
+      .browser-top span {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       .actions { flex-direction: column; align-items: stretch; }
       .button { width: 100%; }
