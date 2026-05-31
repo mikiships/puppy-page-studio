@@ -1,0 +1,825 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Puppy Page Studio</title>
+  <style>
+    :root {
+      --ink: #15211f;
+      --soft-ink: #34423f;
+      --muted: #667370;
+      --paper: #f7f8f4;
+      --white: #ffffff;
+      --line: #d9dfd9;
+      --moss: #1d4a3f;
+      --mint: #e6f0e7;
+      --blue: #265b79;
+      --sky: #e8f1f6;
+      --clay: #b85e49;
+      --apricot: #f6dfcf;
+      --gold: #c49534;
+      --shadow: 0 24px 70px rgba(21, 33, 31, .16);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, #fbfcf9 0, var(--paper) 42%, #eef4ef 100%);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 34px;
+      border-bottom: 1px solid rgba(21, 33, 31, .1);
+      background: rgba(251, 252, 249, .92);
+      backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 17px;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background:
+        linear-gradient(135deg, transparent 0 42%, rgba(255,255,255,.72) 43% 56%, transparent 57%),
+        var(--moss);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.35);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .nav-links a {
+      padding: 8px 0;
+    }
+
+    .nav-pill {
+      color: var(--white);
+      background: var(--moss);
+      border-radius: 8px;
+      padding: 10px 13px;
+    }
+
+    .hero {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 58px 34px 40px;
+      display: grid;
+      grid-template-columns: minmax(360px, .78fr) minmax(0, 1.22fr);
+      gap: 42px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      color: var(--clay);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--clay);
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 600px;
+      margin-bottom: 18px;
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 50px;
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 590px;
+      margin-bottom: 24px;
+      color: var(--soft-ink);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px;
+      margin-bottom: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border-radius: 8px;
+      border: 1px solid var(--moss);
+      background: var(--moss);
+      color: var(--white);
+      font-weight: 800;
+    }
+
+    .button.secondary {
+      color: var(--moss);
+      background: transparent;
+    }
+
+    .status-note {
+      max-width: 590px;
+      display: grid;
+      grid-template-columns: 10px 1fr;
+      gap: 12px;
+      align-items: start;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .status-note::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      margin-top: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 5px rgba(196, 149, 52, .14);
+    }
+
+    .studio-board {
+      position: relative;
+      min-height: 570px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background:
+        linear-gradient(135deg, rgba(232, 241, 246, .82), rgba(230, 240, 231, .72)),
+        var(--white);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .board-top {
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      border-bottom: 1px solid rgba(21, 33, 31, .1);
+      margin: -18px -18px 18px;
+      padding: 0 18px;
+      background: rgba(255,255,255,.74);
+    }
+
+    .board-dots {
+      display: inline-flex;
+      gap: 6px;
+    }
+
+    .board-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--clay);
+    }
+
+    .board-dots span:nth-child(2) { background: var(--gold); }
+    .board-dots span:nth-child(3) { background: var(--moss); }
+
+    .main-shot {
+      overflow: hidden;
+      border: 1px solid rgba(21, 33, 31, .13);
+      border-radius: 10px;
+      background: var(--white);
+      box-shadow: 0 18px 42px rgba(21, 33, 31, .14);
+    }
+
+    .main-shot img {
+      width: 100%;
+      height: 386px;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .shot-caption {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 14px 16px;
+      background: var(--white);
+      border-top: 1px solid var(--line);
+    }
+
+    .shot-caption b {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 14px;
+    }
+
+    .shot-caption span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .badge {
+      border-radius: 999px;
+      background: var(--mint);
+      color: var(--moss);
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .side-proof {
+      position: absolute;
+      right: 28px;
+      bottom: 26px;
+      width: 315px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-shot {
+      overflow: hidden;
+      border: 6px solid var(--white);
+      border-radius: 10px;
+      background: var(--white);
+      box-shadow: 0 16px 34px rgba(21, 33, 31, .16);
+    }
+
+    .mini-shot img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .proof-card {
+      padding: 16px;
+      border-radius: 10px;
+      background: var(--moss);
+      color: var(--white);
+      box-shadow: 0 16px 34px rgba(21, 33, 31, .18);
+    }
+
+    .proof-card b {
+      display: block;
+      margin-bottom: 5px;
+      color: #f4cf84;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .proof-card p {
+      margin: 0;
+      color: rgba(255,255,255,.82);
+      font-size: 13px;
+    }
+
+    .band {
+      padding: 62px 34px;
+      border-top: 1px solid var(--line);
+    }
+
+    .inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 410px) minmax(0, 1fr);
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      margin-bottom: 0;
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 38px;
+      line-height: 1.08;
+    }
+
+    .section-head p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .diagnosis {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .diagnosis article,
+    .work-card,
+    .shot {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--white);
+    }
+
+    .diagnosis article {
+      min-height: 178px;
+      padding: 22px;
+    }
+
+    .label {
+      display: inline-flex;
+      margin-bottom: 18px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .diagnosis h3,
+    .work-card h3 {
+      margin-bottom: 8px;
+      font-size: 20px;
+      line-height: 1.18;
+    }
+
+    .diagnosis p,
+    .work-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .work-card {
+      padding: 20px;
+      min-height: 186px;
+    }
+
+    .work-card:nth-child(1) { border-top: 4px solid var(--moss); }
+    .work-card:nth-child(2) { border-top: 4px solid var(--blue); }
+    .work-card:nth-child(3) { border-top: 4px solid var(--clay); }
+    .work-card:nth-child(4) { border-top: 4px solid var(--gold); }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .shot {
+      overflow: hidden;
+      box-shadow: 0 14px 36px rgba(21, 33, 31, .08);
+    }
+
+    .shot img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: top center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .shot figcaption {
+      padding: 14px 16px 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .shot b {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .process-note {
+      padding: 28px;
+      border-radius: 10px;
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .process-note h2 {
+      margin-bottom: 12px;
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 34px;
+      line-height: 1.08;
+    }
+
+    .process-note p {
+      color: rgba(255,255,255,.75);
+    }
+
+    .steps {
+      display: grid;
+      gap: 10px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--white);
+    }
+
+    .step b {
+      color: var(--clay);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .step span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .cta {
+      padding: 50px 34px;
+      background:
+        linear-gradient(135deg, rgba(29, 74, 63, .98), rgba(38, 91, 121, .94));
+      color: var(--white);
+    }
+
+    .cta .inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .cta h2 {
+      margin-bottom: 8px;
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 38px;
+      line-height: 1.05;
+    }
+
+    .cta p {
+      margin-bottom: 0;
+      max-width: 680px;
+      color: rgba(255,255,255,.78);
+    }
+
+    .cta .button {
+      background: var(--white);
+      color: var(--moss);
+      border-color: var(--white);
+      white-space: nowrap;
+    }
+
+    .footer {
+      padding: 20px 34px 36px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer .inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+
+    @media (max-width: 980px) {
+      .nav {
+        padding: 0 20px;
+      }
+
+      .nav-links a:not(.nav-pill) {
+        display: none;
+      }
+
+      .hero,
+      .section-head,
+      .process,
+      .cta .inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 40px 20px 34px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .studio-board {
+        min-height: auto;
+      }
+
+      .main-shot img {
+        height: 330px;
+      }
+
+      .side-proof {
+        position: static;
+        width: auto;
+        margin-top: 12px;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .diagnosis,
+      .work-grid,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .band,
+      .cta {
+        padding: 42px 20px;
+      }
+
+      .footer {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .brand {
+        font-size: 16px;
+      }
+
+      .nav-pill {
+        padding: 9px 11px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .lead {
+        font-size: 16px;
+      }
+
+      .hero-actions {
+        display: grid;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .main-shot img {
+        height: 235px;
+      }
+
+      .shot-caption {
+        grid-template-columns: 1fr;
+      }
+
+      .side-proof {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-shot {
+        display: none;
+      }
+
+      .step {
+        grid-template-columns: 1fr;
+      }
+
+      .footer .inner {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="nav">
+      <a class="brand" href="#">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Puppy Page Studio</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#diagnosis">Trust</a>
+        <a href="#proof">Examples</a>
+        <a href="#process">Process</a>
+        <a class="nav-pill" href="#status">Available now</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Simple puppy-page barketing</div>
+        <h1>A better available-puppies page, kept current for serious families.</h1>
+        <p class="lead">Puppy Page Studio turns a breeder's available-puppies page into a clear, current trust surface: puppy status, parent context, adoption steps, and photo-authenticity cues, maintained without wrestling with a website builder.</p>
+        <div class="hero-actions">
+          <a class="button" href="#proof">See examples</a>
+          <a class="button secondary" href="#process">How updates work</a>
+        </div>
+        <div class="status-note">Live page is available while the custom domain and business inbox are being set up.</div>
+      </div>
+
+      <section class="studio-board" aria-label="Available puppy page examples">
+        <div class="board-top">
+          <span class="board-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span>Available puppies / trust page</span>
+        </div>
+        <figure class="main-shot">
+          <img src="assets/sparkles-spurs-puppy-gallery.png" alt="Puppy page example showing puppy cards, status labels, and breeder trust details">
+          <figcaption class="shot-caption">
+            <span><b>Available-puppies trust page</b>Current puppies, parent context, adoption steps, and scam-resistance cues in one place.</span>
+            <span class="badge">Example page</span>
+          </figcaption>
+        </figure>
+        <div class="side-proof">
+          <figure class="mini-shot">
+            <img src="assets/river-city-doxies-puppy-gallery.png" alt="Second puppy page example">
+          </figure>
+          <div class="proof-card">
+            <b>Page refresh</b>
+            <p>A focused page upgrade for breeders who want clearer inquiries and fewer stale-listing headaches.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="band" id="diagnosis">
+      <div class="inner">
+        <div class="section-head">
+          <h2>Families are scanning for proof, not decoration.</h2>
+          <p>The available-puppies page is where trust either forms or falls apart. It has to answer practical questions quickly without making the breeder sound corporate or desperate.</p>
+        </div>
+        <div class="diagnosis">
+          <article>
+            <span class="label">Buyer anxiety</span>
+            <h3>Is this puppy real and current?</h3>
+            <p>Status, go-home date, price/deposit context, parent notes, and process need to be visible before an inquiry.</p>
+          </article>
+          <article>
+            <span class="label">Breeder burden</span>
+            <h3>Can this stay updated?</h3>
+            <p>Reserved, sold, upcoming, and no-current-puppies states need to be normal workflow, not a redesign every month.</p>
+          </article>
+          <article>
+            <span class="label">Scam pressure</span>
+            <h3>Can buyers find the canonical source?</h3>
+            <p>Light watermarking, dated litter context, and canonical URLs make stolen-photo listings easier to spot.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="inner">
+        <div class="section-head">
+          <h2>Less marketing. Better barketing.</h2>
+          <p>No kennel CRM. No generic agency package. Just the page buyers care about most, designed around trust and easy upkeep.</p>
+        </div>
+        <div class="work-grid">
+          <article class="work-card">
+            <h3>Availability layout</h3>
+            <p>Current, reserved, sold, waitlist, and upcoming states stay clear on mobile and desktop.</p>
+          </article>
+          <article class="work-card">
+            <h3>Trust structure</h3>
+            <p>Parent context, health/process notes, location signals, and buyer expectations are designed to be scanned.</p>
+          </article>
+          <article class="work-card">
+            <h3>Managed updates</h3>
+            <p>Breeders can send photo/status changes without living inside a website builder.</p>
+          </article>
+          <article class="work-card">
+            <h3>Authenticity layer</h3>
+            <p>Canonical puppy URLs and tasteful image cues help legitimate breeders stand apart from copied listings.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="proof">
+      <div class="inner">
+        <div class="section-head">
+          <h2>Example page directions.</h2>
+          <p>Each example shows the same core idea: current puppy status, visible trust context, and a page structure that can keep changing as a litter changes.</p>
+        </div>
+        <div class="gallery">
+          <figure class="shot">
+            <img src="assets/sparkles-spurs-puppy-gallery.png" alt="Sparkles and Spurs puppy gallery example">
+            <figcaption><b>Sparkles & Spurs</b>Status-first listings with parent context and above-fold trust proof.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="assets/river-city-doxies-puppy-gallery.png" alt="River City Doxies puppy gallery example">
+            <figcaption><b>River City Doxies</b>Adoption steps, availability, and buyer confidence in one page path.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="assets/melsh-precious-pets-puppy-gallery.png" alt="Melsh Precious Pets puppy gallery example">
+            <figcaption><b>Melsh Precious Pets</b>Consistent puppy cards and update states for a managed workflow.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="process">
+      <div class="inner process">
+        <div class="process-note">
+          <h2>Built for the week after the page goes live.</h2>
+          <p>The real value is not one pretty launch. It is keeping the page accurate as litters change, buyers reserve puppies, and new photos come in.</p>
+        </div>
+        <div class="steps">
+          <div class="step"><b>Add</b><span><strong>New puppy or litter</strong>Name, sex, coat, color, DOB, price/deposit context, photos, and go-home timing become a consistent listing.</span></div>
+          <div class="step"><b>Change</b><span><strong>Reserved, sold, or updated</strong>A simple note like "Scout reserved" or "new photos for Maple" changes the page without breaking layout.</span></div>
+          <div class="step"><b>Pause</b><span><strong>No puppies available</strong>The page shifts into waitlist and upcoming-litter mode instead of looking stale or abandoned.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="inner">
+        <div>
+          <h2>Keep the puppy page current without becoming a webmaster.</h2>
+          <p>The service is intentionally small: one page that helps families understand what is available, what is real, and what happens next, with updates handled as puppies move from available to reserved to sold.</p>
+        </div>
+        <a class="button" href="#status">Business inbox pending</a>
+      </div>
+    </section>
+
+    <footer class="footer" id="status">
+      <div class="inner">
+        <span>Live page: puppypagestudio.surge.sh</span>
+        <span>Custom domain and business inbox still required before breeder contact.</span>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
