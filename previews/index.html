@@ -415,7 +415,7 @@
 <body>
   <div class="private-note">
     <div class="inner">
-      <span><b>Private preview.</b> A rough replacement site concept built from public information.</span>
+      <span><b>Private replacement-site preview.</b></span>
     </div>
   </div>
 
@@ -441,7 +441,7 @@
           <p class="lead" id="heroLead"></p>
           <div class="actions">
             <a class="button" id="primaryAction" href="#contact">Ask about puppies</a>
-            <a class="button secondary" id="sourceLink" href="#" target="_blank" rel="noopener">Open current site</a>
+            <a class="button secondary" id="sourceLink" href="#puppies">See puppies</a>
           </div>
         </div>
         <figure class="photo-card">
@@ -617,7 +617,7 @@
       document.getElementById("eyebrow").textContent = data.eyebrow;
       document.getElementById("heroTitle").textContent = data.title;
       document.getElementById("heroLead").textContent = data.lead;
-      document.getElementById("sourceLink").href = data.source;
+      document.getElementById("sourceLink").href = "#puppies";
       document.getElementById("heroImage").src = data.heroImage;
       document.getElementById("heroImage").alt = data.heroAlt;
       document.getElementById("photoText").textContent = data.photoText;
