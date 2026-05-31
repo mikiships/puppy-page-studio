@@ -37,6 +37,10 @@
       letter-spacing: 0;
     }
 
+    html, body {
+      overflow-x: hidden;
+    }
+
     img {
       display: block;
       max-width: 100%;
@@ -160,6 +164,7 @@
 
     h1, h2, h3, p {
       margin-top: 0;
+      overflow-wrap: anywhere;
     }
 
     h1 {
@@ -222,6 +227,7 @@
     }
 
     .mock-browser {
+      min-width: 0;
       overflow: hidden;
       border: 1px solid rgba(23, 33, 31, .13);
       border-radius: 13px;
@@ -490,9 +496,17 @@
     }
 
     @media (max-width: 920px) {
+      .top-inner, .hero, .section-head {
+        min-width: 0;
+      }
+
       .top-inner, .notice .wrap {
         align-items: flex-start;
         flex-direction: column;
+      }
+
+      .switcher {
+        width: 100%;
       }
 
       .hero, .preview-hero, .lower-grid {
