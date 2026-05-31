@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" role="img" aria-labelledby="title desc">
+  <title id="title">Fictional adoption process page sample</title>
+  <desc id="desc">A fictional breeder page layout showing adoption steps and trust details.</desc>
+  <rect width="1200" height="780" fill="#eef4f1"/>
+  <rect x="64" y="54" width="1072" height="672" rx="28" fill="#fffef9" stroke="#d7ded8" stroke-width="3"/>
+  <text x="104" y="132" fill="#17211f" font-family="Georgia, serif" font-size="56" font-weight="700">How adoption works</text>
+  <text x="104" y="181" fill="#4d5a55" font-family="Arial, sans-serif" font-size="26">A clear path for families before they call, text, or email.</text>
+  <g transform="translate(104 260)">
+    <rect width="292" height="300" rx="20" fill="#f4eadb"/>
+    <circle cx="58" cy="62" r="28" fill="#2f5d51"/>
+    <text x="49" y="72" fill="#fffdf8" font-family="Arial, sans-serif" font-size="25" font-weight="700">1</text>
+    <text x="34" y="136" fill="#17211f" font-family="Georgia, serif" font-size="34" font-weight="700">Choose a puppy</text>
+    <text x="34" y="185" fill="#4d5a55" font-family="Arial, sans-serif" font-size="22">See status, age, coat, sex, and ready date.</text>
+  </g>
+  <g transform="translate(454 260)">
+    <rect width="292" height="300" rx="20" fill="#dce9e1"/>
+    <circle cx="58" cy="62" r="28" fill="#2f5d51"/>
+    <text x="49" y="72" fill="#fffdf8" font-family="Arial, sans-serif" font-size="25" font-weight="700">2</text>
+    <text x="34" y="136" fill="#17211f" font-family="Georgia, serif" font-size="34" font-weight="700">Ask questions</text>
+    <text x="34" y="185" fill="#4d5a55" font-family="Arial, sans-serif" font-size="22">Health details and parent notes stay nearby.</text>
+  </g>
+  <g transform="translate(804 260)">
+    <rect width="292" height="300" rx="20" fill="#ead8d0"/>
+    <circle cx="58" cy="62" r="28" fill="#2f5d51"/>
+    <text x="49" y="72" fill="#fffdf8" font-family="Arial, sans-serif" font-size="25" font-weight="700">3</text>
+    <text x="34" y="136" fill="#17211f" font-family="Georgia, serif" font-size="34" font-weight="700">Reserve simply</text>
+    <text x="34" y="185" fill="#4d5a55" font-family="Arial, sans-serif" font-size="22">Deposit, pickup, and next steps are easy to find.</text>
+  </g>
+  <rect x="104" y="620" width="992" height="48" rx="24" fill="#2f5d51"/>
+  <text x="140" y="653" fill="#fffdf8" font-family="Arial, sans-serif" font-size="22" font-weight="700">Fictional sample, not a real breeder page</text>
+</svg>

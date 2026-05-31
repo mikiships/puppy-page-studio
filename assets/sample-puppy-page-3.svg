@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" role="img" aria-labelledby="title desc">
+  <title id="title">Fictional puppy page update sample</title>
+  <desc id="desc">A fictional breeder page layout showing puppy status updates over time.</desc>
+  <rect width="1200" height="780" fill="#f7f2ec"/>
+  <rect x="60" y="52" width="1080" height="676" rx="30" fill="#fffef9" stroke="#e0d5c8" stroke-width="3"/>
+  <text x="104" y="134" fill="#17211f" font-family="Georgia, serif" font-size="54" font-weight="700">This week’s puppy updates</text>
+  <text x="104" y="184" fill="#4d5a55" font-family="Arial, sans-serif" font-size="26">A page that changes as the litter changes.</text>
+  <g transform="translate(104 252)">
+    <rect width="992" height="88" rx="18" fill="#edf4ef"/>
+    <text x="32" y="55" fill="#17211f" font-family="Georgia, serif" font-size="30" font-weight="700">New photos added for Daisy</text>
+    <text x="745" y="55" fill="#2f5d51" font-family="Arial, sans-serif" font-size="21" font-weight="700">May 31</text>
+  </g>
+  <g transform="translate(104 370)">
+    <rect width="992" height="88" rx="18" fill="#f5e7dc"/>
+    <text x="32" y="55" fill="#17211f" font-family="Georgia, serif" font-size="30" font-weight="700">Maple moved to pending</text>
+    <text x="745" y="55" fill="#8c5b4e" font-family="Arial, sans-serif" font-size="21" font-weight="700">May 29</text>
+  </g>
+  <g transform="translate(104 488)">
+    <rect width="992" height="88" rx="18" fill="#edf1f5"/>
+    <text x="32" y="55" fill="#17211f" font-family="Georgia, serif" font-size="30" font-weight="700">Go-home checklist posted</text>
+    <text x="745" y="55" fill="#315f78" font-family="Arial, sans-serif" font-size="21" font-weight="700">May 24</text>
+  </g>
+  <rect x="104" y="628" width="460" height="50" rx="25" fill="#2f5d51"/>
+  <text x="146" y="661" fill="#fffdf8" font-family="Arial, sans-serif" font-size="22" font-weight="700">Ask about available puppies</text>
+</svg>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" role="img" aria-labelledby="title desc">
+  <title id="title">Fictional available puppies page sample</title>
+  <desc id="desc">A fictional puppy page layout with status cards, parent notes, and adoption steps.</desc>
+  <rect width="1200" height="780" fill="#f7f0e4"/>
+  <rect x="54" y="50" width="1092" height="680" rx="26" fill="#fffdf8" stroke="#ded4c4" stroke-width="3"/>
+  <rect x="54" y="50" width="1092" height="86" rx="26" fill="#2f5d51"/>
+  <text x="94" y="104" fill="#fffdf8" font-family="Georgia, serif" font-size="35" font-weight="700">Sample Puppy Page</text>
+  <text x="867" y="104" fill="#e9f1df" font-family="Arial, sans-serif" font-size="22" font-weight="700">Available now</text>
+  <text x="94" y="201" fill="#17211f" font-family="Georgia, serif" font-size="58" font-weight="700">Mini dachshund puppies</text>
+  <text x="94" y="250" fill="#4d5a55" font-family="Arial, sans-serif" font-size="26">Current puppies, go-home dates, parent notes, and the next step in one place.</text>
+  <g transform="translate(94 312)">
+    <rect width="300" height="276" rx="20" fill="#f1dccb"/>
+    <circle cx="96" cy="92" r="42" fill="#b0674f"/>
+    <circle cx="202" cy="92" r="42" fill="#7b4d35"/>
+    <text x="30" y="178" fill="#17211f" font-family="Georgia, serif" font-size="31" font-weight="700">Daisy</text>
+    <text x="30" y="218" fill="#4d5a55" font-family="Arial, sans-serif" font-size="22">Female, shaded cream</text>
+    <rect x="30" y="236" width="120" height="30" rx="15" fill="#2f5d51"/>
+    <text x="48" y="258" fill="#fffdf8" font-family="Arial, sans-serif" font-size="16" font-weight="700">Available</text>
+  </g>
+  <g transform="translate(450 312)">
+    <rect width="300" height="276" rx="20" fill="#dbe7df"/>
+    <circle cx="96" cy="92" r="42" fill="#46362c"/>
+    <circle cx="202" cy="92" r="42" fill="#a86b4f"/>
+    <text x="30" y="178" fill="#17211f" font-family="Georgia, serif" font-size="31" font-weight="700">Maple</text>
+    <text x="30" y="218" fill="#4d5a55" font-family="Arial, sans-serif" font-size="22">Female, longhair dapple</text>
+    <rect x="30" y="236" width="110" height="30" rx="15" fill="#bd8935"/>
+    <text x="48" y="258" fill="#fffdf8" font-family="Arial, sans-serif" font-size="16" font-weight="700">Pending</text>
+  </g>
+  <g transform="translate(806 312)">
+    <rect width="300" height="276" rx="20" fill="#e7eef0"/>
+    <circle cx="96" cy="92" r="42" fill="#5f3f31"/>
+    <circle cx="202" cy="92" r="42" fill="#d7b68f"/>
+    <text x="30" y="178" fill="#17211f" font-family="Georgia, serif" font-size="31" font-weight="700">Scout</text>
+    <text x="30" y="218" fill="#4d5a55" font-family="Arial, sans-serif" font-size="22">Male, chocolate tan</text>
+    <rect x="30" y="236" width="95" height="30" rx="15" fill="#8c5b4e"/>
+    <text x="48" y="258" fill="#fffdf8" font-family="Arial, sans-serif" font-size="16" font-weight="700">Reserved</text>
+  </g>
+  <rect x="94" y="632" width="1012" height="48" rx="24" fill="#f3eadc"/>
+  <text x="124" y="665" fill="#3f4b47" font-family="Arial, sans-serif" font-size="22">Health guarantee • parent photos • go-home window • simple inquiry button</text>
+</svg>
