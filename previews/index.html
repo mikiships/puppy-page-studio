@@ -4,22 +4,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>Puppy Page Studio Preview</title>
+  <title>Breeder Site</title>
   <style>
     :root {
       --ink: #18211f;
       --body: #46534f;
       --muted: #71807a;
-      --paper: #fbf8f1;
+      --paper: #f6f3ea;
       --white: #fffef9;
-      --green: #2e5d50;
-      --green-2: #dce8df;
-      --blue: #2f6079;
-      --cream: #f1e6d5;
-      --clay: #a75f4d;
-      --line: #ded4c5;
-      --gold: #b98231;
-      --shadow: 0 22px 54px rgba(24, 33, 31, .13);
+      --green: #244d41;
+      --green-2: #dfeade;
+      --blue: #2b6074;
+      --cream: #eee2d0;
+      --clay: #9e503f;
+      --line: #dbd0c0;
+      --gold: #b97b27;
+      --sun: #f5b857;
+      --shadow: 0 18px 44px rgba(24, 33, 31, .12);
     }
 
     * { box-sizing: border-box; }
@@ -38,29 +39,13 @@
     img { display: block; max-width: 100%; }
     a { color: inherit; text-decoration: none; }
 
-    .private-note {
-      background: #17211f;
-      color: rgba(255,255,255,.86);
-      font-size: 13px;
-    }
-
-    .private-note .inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 9px 20px;
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-    }
-
-    .private-note b { color: #fff; }
-
     .site {
       min-height: 100vh;
       background:
-        radial-gradient(circle at 12% 8%, rgba(220,232,223,.95), transparent 28%),
-        linear-gradient(180deg, rgba(255,254,249,.9), rgba(241,230,213,.58) 72%, rgba(255,254,249,.96)),
+        linear-gradient(90deg, rgba(36,77,65,.09) 0 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,254,249,.98), rgba(246,243,234,.92) 62%, rgba(255,254,249,.96)),
         var(--paper);
+      background-size: 88px 100%, auto;
     }
 
     .wrap {
@@ -69,7 +54,7 @@
     }
 
     .nav {
-      min-height: 74px;
+      min-height: 82px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -87,10 +72,10 @@
     .brand-mark {
       width: 42px;
       height: 42px;
-      border-radius: 50%;
+      border-radius: 14px;
       background:
-        radial-gradient(circle at 38% 32%, #fff8e6 0 14%, transparent 15%),
-        linear-gradient(135deg, var(--green), #79a178);
+        linear-gradient(135deg, transparent 0 42%, rgba(255,255,255,.64) 43% 55%, transparent 56%),
+        linear-gradient(135deg, var(--green), #7a9e72);
       box-shadow: inset 0 0 0 2px rgba(255,254,249,.72);
     }
 
@@ -104,29 +89,39 @@
     }
 
     .nav-links a {
-      border: 1px solid rgba(46, 93, 80, .18);
-      border-radius: 999px;
-      background: rgba(255,255,255,.62);
-      padding: 8px 12px;
+      border-bottom: 2px solid transparent;
+      padding: 9px 2px;
       font: inherit;
       color: inherit;
       cursor: pointer;
       white-space: nowrap;
     }
 
+    .nav-links a:hover { border-bottom-color: var(--clay); color: var(--ink); }
+
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, .85fr) minmax(350px, 1.15fr);
-      gap: 40px;
+      grid-template-columns: minmax(0, .78fr) minmax(390px, 1.22fr);
+      gap: 44px;
       align-items: center;
-      padding: 58px 0 50px;
+      padding: 54px 0 58px;
     }
 
     .eyebrow {
-      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
       color: var(--clay);
       font-size: 13px;
       font-weight: 900;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 2px;
+      background: var(--clay);
     }
 
     h1, h2, h3, p { margin-top: 0; overflow-wrap: break-word; }
@@ -135,8 +130,8 @@
       max-width: 620px;
       margin-bottom: 17px;
       font-family: "Iowan Old Style", Georgia, serif;
-      font-size: clamp(40px, 5vw, 64px);
-      line-height: 1;
+      font-size: clamp(42px, 5.4vw, 70px);
+      line-height: .98;
       letter-spacing: 0;
     }
 
@@ -176,34 +171,39 @@
       width: 100%;
       overflow: hidden;
       border: 1px solid rgba(24, 33, 31, .12);
-      border-radius: 10px;
+      border-radius: 16px;
       background: var(--white);
       box-shadow: var(--shadow);
     }
 
     .photo-card img {
       width: 100%;
-      aspect-ratio: 1.25 / .92;
+      aspect-ratio: 1.17 / .9;
       object-fit: cover;
     }
 
     .photo-caption {
-      padding: 16px 18px;
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0;
       color: var(--body);
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 800;
+    }
+
+    .photo-caption span:first-child {
+      padding: 18px 20px;
     }
 
     .pill {
       display: inline-flex;
       align-items: center;
-      min-height: 28px;
-      padding: 0 10px;
-      border-radius: 999px;
-      background: var(--green-2);
+      justify-content: center;
+      min-height: 100%;
+      padding: 0 18px;
+      border-left: 1px solid var(--line);
+      background: #f4efe5;
       color: var(--green);
       font-size: 12px;
       font-weight: 900;
@@ -238,7 +238,7 @@
     .steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 18px;
     }
 
     .card,
@@ -247,16 +247,16 @@
     .plain-note {
       min-width: 0;
       border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255,254,249,.84);
-      box-shadow: 0 14px 32px rgba(24,33,31,.08);
+      border-radius: 10px;
+      background: rgba(255,254,249,.92);
+      box-shadow: 0 10px 26px rgba(24,33,31,.07);
     }
 
     .card { overflow: hidden; }
 
     .card img {
       width: 100%;
-      height: 220px;
+      height: 230px;
       object-fit: cover;
     }
 
@@ -285,17 +285,110 @@
       margin-bottom: 0;
     }
 
-    .facts {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 6px 10px;
-      margin-top: 13px;
-      font-size: 14px;
-      color: var(--body);
+    .tagline {
+      display: inline-flex;
+      margin-top: 14px;
+      min-height: 30px;
+      align-items: center;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: var(--green-2);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
     }
 
-    .facts dt { color: var(--muted); font-weight: 900; }
-    .facts dd { margin: 0; }
+    .availability {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .availability-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+
+    .availability-list li {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--body);
+      font-weight: 750;
+    }
+
+    .availability-list strong {
+      display: block;
+      color: var(--ink);
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 23px;
+      line-height: 1.08;
+    }
+
+    .availability-list em {
+      display: inline-flex;
+      align-items: center;
+      height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: #f4efe5;
+      color: var(--clay);
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .care-panel {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px;
+      background: #17211f;
+      color: #fffef9;
+    }
+
+    .care-panel h3 {
+      margin-bottom: 10px;
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 30px;
+      line-height: 1.04;
+    }
+
+    .care-panel p {
+      margin-bottom: 16px;
+      color: rgba(255,255,255,.75);
+    }
+
+    .care-panel ul {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .care-panel li {
+      padding-left: 18px;
+      position: relative;
+      color: rgba(255,255,255,.9);
+      font-weight: 750;
+    }
+
+    .care-panel li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .65em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--sun);
+    }
 
     .contact-band {
       margin: 34px 0 50px;
@@ -328,18 +421,14 @@
       flex: 0 0 auto;
     }
 
-    .plain-note {
+    .private-footnote {
       margin-bottom: 46px;
-      box-shadow: none;
-      background: #fffdf8;
-    }
-
-    .plain-note strong {
-      color: var(--green);
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
     }
 
     @media (max-width: 880px) {
-      .private-note .inner,
       .nav,
       .contact-band .wrap {
         align-items: flex-start;
@@ -353,6 +442,7 @@
       }
 
       .hero,
+      .availability,
       .puppy-grid,
       .trust-grid,
       .steps {
@@ -373,13 +463,6 @@
       .contact-band {
         max-width: 100vw;
         overflow: hidden;
-      }
-      .private-note { font-size: 12px; }
-      .private-note .inner,
-      .private-note span {
-        max-width: 100%;
-        min-width: 0;
-        overflow-wrap: anywhere;
       }
       .hero { padding-top: 32px; gap: 24px; }
       h1 {
@@ -408,17 +491,21 @@
         max-width: 100%;
         overflow-wrap: anywhere;
       }
-      .photo-caption .pill { margin-top: 10px; }
+      .photo-caption span:first-child { display: block; }
+      .photo-caption .pill {
+        width: 100%;
+        min-height: 42px;
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+      .availability-list li {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="private-note">
-    <div class="inner">
-      <span><b>Private replacement-site preview.</b></span>
-    </div>
-  </div>
-
   <div class="site" id="top">
     <header class="wrap nav">
       <a class="brand" href="#top" aria-label="Home">
@@ -466,7 +553,14 @@
           <h2>Care details families look for</h2>
           <p id="trustIntro"></p>
         </div>
-        <div class="trust-grid" id="trustGrid"></div>
+        <div class="availability">
+          <ul class="availability-list" id="trustGrid"></ul>
+          <aside class="care-panel">
+            <h3>What families should know before they call</h3>
+            <p id="carePanelText"></p>
+            <ul id="carePanelList"></ul>
+          </aside>
+        </div>
       </section>
 
       <section class="wrap section" id="steps">
@@ -487,8 +581,8 @@
         </div>
       </section>
 
-      <section class="wrap plain-note">
-        <p><strong>Private note:</strong> This is a rough page preview, not a finished redesign. The goal is to show how the breeder's own site could feel when puppy status, care details, and the contact step are easy to find.</p>
+      <section class="wrap private-footnote">
+        <p>Private replacement-site preview for review only.</p>
       </section>
     </main>
   </div>
@@ -504,10 +598,12 @@
         heroImage: "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_0663-high.jpg?enable-io=true&enable=upscale&crop=0.8333%3A1&width=900",
         heroAlt: "Happily Ever After Dachshunds puppy photo",
         photoText: "Puppy photos, availability, and contact details belong together on the first page.",
-        photoPill: "Private preview",
+        photoPill: "Puppy updates",
         puppyTitle: "Puppies and litter updates",
         puppyIntro: "A good puppy page should make the basics obvious: who is available, who is reserved, when puppies go home, and how to ask a question.",
         trustIntro: "Families want a calm, plain answer to the same few questions before they call.",
+        carePanelText: "A breeder site should reduce repeat questions without making the family feel like they are reading an application packet.",
+        carePanel: ["Health guarantee and vet care", "Deposit and pickup expectations", "How puppies are raised at home"],
         contactTitle: "Ready to ask about a puppy?",
         contactText: "Call or email Lyn after you have seen the current puppies and care details.",
         contactHref: "https://www.happily-ever-after-dachshunds.com/",
@@ -517,9 +613,9 @@
           ["Pickup and deposit", "Deposit, payment, and pickup expectations are written in plain language before the call.", "Next step", "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_0663-high.jpg?enable-io=true&enable=upscale&crop=0.8333%3A1&width=900"]
         ],
         trust: [
-          ["Are puppies available?", "Visitors should see current status without hunting through old updates."],
-          ["Who raises them?", "The breeder story and care routine should sit near the puppy photos."],
-          ["What happens next?", "The call, deposit, and pickup path should feel simple."]
+          ["Are puppies available?", "Current status belongs near the top, not hidden behind old updates.", "Availability"],
+          ["Who raises them?", "The breeder story and care routine should sit near the puppy photos.", "Home care"],
+          ["What happens next?", "The call, deposit, and pickup path should feel simple.", "Contact"]
         ],
         stepsIntro: "Plain steps reduce back-and-forth from families who are not ready or are asking the same basic questions.",
         steps: [
@@ -537,10 +633,12 @@
         heroImage: "https://static.wixstatic.com/media/1c6923_aa9e412100154d91bd09693a403ff48f~mv2.jpg/v1/crop/x_0,y_0,w_1101,h_1743/fill/w_520,h_720,al_c,q_80,enc_avif,quality_auto/311820885_6135099696504676_3264293825314376773_n.jpg",
         heroAlt: "Desert Horizon dachshund photo",
         photoText: "A breed-specific page keeps dachshund families from getting lost in the larger site.",
-        photoPill: "Private preview",
+        photoPill: "Dachshund path",
         puppyTitle: "A cleaner dachshund page",
         puppyIntro: "The important details are already there: AKC, testing, microchip, vaccinations, and home-raised care. They should be easy to find.",
         trustIntro: "This page should make the breeder's care standards visible before someone sends an inquiry.",
+        carePanelText: "The good details are already present. The page should group them where families decide whether to reach out.",
+        carePanel: ["AKC and testing notes", "Vaccines, microchip, and home care", "Phone and email near puppy status"],
         contactTitle: "Questions for Mary or Dave?",
         contactText: "The contact route should sit beside the puppy information, not at the end of a long search.",
         contactHref: "https://www.deserthorizonaussies.com/available-puppies",
@@ -550,9 +648,9 @@
           ["Contact info", "Keep phone and email visible when the visitor is looking at available puppies.", "Next step", "https://static.wixstatic.com/media/1c6923_aa6695c712ae4734bf8f7e1c09c52661~mv2.jpg/v1/fill/w_900,h_320,al_c,q_80,enc_avif,quality_auto/a-painted-desert-saija-lehtonen.jpg"]
         ],
         trust: [
-          ["Is this the right breed page?", "Make the dachshund path obvious as soon as someone lands."],
-          ["How are puppies raised?", "Home-raised care and testing should be visible before the inquiry."],
-          ["Who do I contact?", "Phone and email should be near the decision point."]
+          ["Is this the right breed page?", "Make the dachshund path obvious as soon as someone lands.", "Breed path"],
+          ["How are puppies raised?", "Home-raised care and testing should be visible before the inquiry.", "Care"],
+          ["Who do I contact?", "Phone and email should be near the decision point.", "Next step"]
         ],
         stepsIntro: "The page should answer the easy questions first, then invite the family to call or email.",
         steps: [
@@ -570,10 +668,12 @@
         heroImage: "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/family-puppy1.ec53074a8b604450b33d2b82cd2ae9cb.85f6c9db0561e597.a6948e40.png",
         heroAlt: "Premier DNA Canines puppy photo",
         photoText: "A health-first page can still make the next step simple.",
-        photoPill: "Private preview",
+        photoPill: "Health-first",
         puppyTitle: "Current status and upcoming litters",
         puppyIntro: "Available, sold, planned, and waitlist should each have a clear place so families know what to do next.",
         trustIntro: "The health story matters most when families can see it right next to the puppy decision.",
+        carePanelText: "Health proof and puppy status should reinforce each other instead of living in separate parts of the site.",
+        carePanel: ["Genetic screening and vet checks", "Current, sold, and planned litters", "Waitlist path when nothing is available"],
         contactTitle: "Choose the right next step",
         contactText: "If puppies are sold, join the waitlist. If a litter is planned, make the timing clear.",
         contactHref: "https://premierdnacanines.com/",
@@ -583,9 +683,9 @@
           ["Waitlist path", "When puppies are sold, give families a clear waitlist or upcoming-litter action.", "Next step", "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/past-dapple-longhair.067565188cef4254b2df10bdd9612af7.4199e4204f09d85262792.png"]
         ],
         trust: [
-          ["Are puppies available now?", "Make availability and sold status clear at a glance."],
-          ["Why trust this breeder?", "Put screening and health guarantee beside the puppy decision."],
-          ["What if nothing is available?", "Offer a waitlist or upcoming-litter route instead of leaving people unsure."]
+          ["Are puppies available now?", "Make availability and sold status clear at a glance.", "Status"],
+          ["Why trust this breeder?", "Put screening and health guarantee beside the puppy decision.", "Health"],
+          ["What if nothing is available?", "Offer a waitlist or upcoming-litter route instead of leaving people unsure.", "Waitlist"]
         ],
         stepsIntro: "The health story is strongest when it sits beside the puppy decision, not far away from it.",
         steps: [
@@ -610,7 +710,7 @@
     function render(siteKey) {
       const data = previews[siteKey];
       active = siteKey;
-      document.title = data.name + " Preview";
+      document.title = data.name;
       history.replaceState(null, "", "?site=" + siteKey);
 
       document.getElementById("brandName").textContent = data.name;
@@ -641,10 +741,7 @@
         const body = el("div", "card-body");
         body.appendChild(el("h3", "", puppy[0]));
         body.appendChild(el("p", "", puppy[1]));
-        const facts = el("dl", "facts");
-        facts.appendChild(el("dt", "", "Role"));
-        facts.appendChild(el("dd", "", puppy[2]));
-        body.appendChild(facts);
+        body.appendChild(el("span", "tagline", puppy[2]));
         card.appendChild(body);
         puppyGrid.appendChild(card);
       });
@@ -652,11 +749,19 @@
       const trustGrid = document.getElementById("trustGrid");
       trustGrid.innerHTML = "";
       data.trust.forEach((item) => {
-        const card = el("article", "trust");
-        card.appendChild(el("h3", "", item[0]));
-        card.appendChild(el("p", "", item[1]));
-        trustGrid.appendChild(card);
+        const row = el("li");
+        const copy = el("span");
+        copy.appendChild(el("strong", "", item[0]));
+        copy.appendChild(document.createTextNode(item[1]));
+        row.appendChild(copy);
+        row.appendChild(el("em", "", item[2]));
+        trustGrid.appendChild(row);
       });
+
+      document.getElementById("carePanelText").textContent = data.carePanelText;
+      const carePanelList = document.getElementById("carePanelList");
+      carePanelList.innerHTML = "";
+      data.carePanel.forEach((item) => carePanelList.appendChild(el("li", "", item)));
 
       const stepsGrid = document.getElementById("stepsGrid");
       stepsGrid.innerHTML = "";
