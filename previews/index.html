@@ -164,7 +164,7 @@
 
     h1, h2, h3, p {
       margin-top: 0;
-      overflow-wrap: anywhere;
+      overflow-wrap: break-word;
     }
 
     h1 {
@@ -230,66 +230,69 @@
       min-width: 0;
       overflow: hidden;
       border: 1px solid rgba(23, 33, 31, .13);
-      border-radius: 13px;
+      border-radius: 10px;
       background: var(--white);
-      box-shadow: var(--shadow);
+      box-shadow: 0 18px 44px rgba(23, 33, 31, .13);
     }
 
     .browser-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 42px;
-      padding: 0 15px;
+      min-height: 46px;
+      padding: 11px 18px;
       border-bottom: 1px solid rgba(23, 33, 31, .1);
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 800;
+      background: #fffdf7;
+    }
+
+    .browser-top::before {
+      content: "Private rough preview";
       color: var(--muted);
       font-size: 12px;
-      font-weight: 800;
-      background: rgba(255,255,255,.7);
+      font-weight: 900;
+      text-transform: uppercase;
     }
-
-    .dots {
-      display: inline-flex;
-      gap: 6px;
-    }
-
-    .dots span {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--clay);
-    }
-
-    .dots span:nth-child(2) { background: var(--gold); }
-    .dots span:nth-child(3) { background: var(--moss); }
 
     .preview-hero {
-      min-height: 420px;
       display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      background: linear-gradient(135deg, var(--cream), #fff);
+      grid-template-columns: minmax(250px, .85fr) minmax(0, 1.15fr);
+      gap: 0;
+      background: linear-gradient(135deg, #fffdf7, var(--cream));
     }
 
     .preview-copy {
-      padding: 34px;
+      min-width: 0;
+      padding: 30px 32px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      order: 2;
     }
 
     .preview-copy h2 {
       font-family: "Iowan Old Style", Georgia, serif;
-      font-size: 39px;
-      line-height: 1.02;
+      font-size: 30px;
+      line-height: 1.08;
       letter-spacing: 0;
-      margin-bottom: 13px;
+      margin-bottom: 12px;
+      max-width: 520px;
+    }
+
+    .preview-copy p {
+      color: var(--soft);
+      font-size: 15px;
+      line-height: 1.55;
+      max-width: 520px;
     }
 
     .mini-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 7px;
-      margin-top: 18px;
+      margin-top: 16px;
     }
 
     .chip {
@@ -305,10 +308,19 @@
     }
 
     .preview-img {
-      min-height: 420px;
-      background-position: center;
+      min-height: 360px;
+      background-position: center 42%;
       background-size: cover;
-      border-left: 1px solid rgba(23, 33, 31, .1);
+      border-right: 1px solid rgba(23, 33, 31, .1);
+      order: 1;
+      position: relative;
+    }
+
+    .preview-img::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(23, 33, 31, 0), rgba(23, 33, 31, .08));
     }
 
     .score-grid {
@@ -534,8 +546,8 @@
 
       .preview-img {
         min-height: 300px;
-        border-left: 0;
-        border-top: 1px solid rgba(23, 33, 31, .1);
+        border-right: 0;
+        border-bottom: 1px solid rgba(23, 33, 31, .1);
       }
 
       .score-grid, .cards {
@@ -545,29 +557,65 @@
 
     @media (max-width: 560px) {
       .wrap { padding: 0 16px; }
+      main.wrap {
+        overflow: hidden;
+      }
       .notice { font-size: 12px; }
+      .notice .wrap {
+        gap: 6px;
+      }
       .notice span,
       .proof-note {
         max-width: 100%;
         min-width: 0;
         overflow-wrap: anywhere;
       }
+      #sourceLine {
+        display: none;
+      }
       .switcher {
         max-width: calc(100vw - 32px);
       }
       .hero { padding-top: 32px; }
+      .hero > div:first-child {
+        width: min(320px, 100%);
+      }
       h1 {
-        font-size: 29px;
+        width: min(320px, 100%);
+        max-width: 320px;
+        font-size: 24px;
         line-height: 1.1;
+        overflow-wrap: anywhere;
+      }
+      .lead {
+        width: min(320px, 100%);
+        max-width: 320px;
+        font-size: 16px;
+        overflow-wrap: anywhere;
+      }
+      .proof-note {
+        width: min(320px, 100%);
+        max-width: 320px;
       }
       .preview-copy { padding: 22px; }
       .preview-copy h2,
       .section h2 {
-        font-size: 25px;
+        font-size: 24px;
         line-height: 1.08;
+        overflow-wrap: normal;
       }
       .mock-browser {
         max-width: calc(100vw - 32px);
+      }
+      .browser-top {
+        min-height: 40px;
+        padding: 10px 14px;
+      }
+      .browser-top::before {
+        font-size: 11px;
+      }
+      #browserLabel {
+        display: none;
       }
       .browser-top span {
         min-width: 0;
@@ -617,7 +665,6 @@
 
       <div class="mock-browser" aria-label="Rough preview of redesigned breeder page">
         <div class="browser-top">
-          <span class="dots"><span></span><span></span><span></span></span>
           <span id="browserLabel">rough-preview</span>
         </div>
         <div class="preview-hero">
@@ -662,11 +709,11 @@
       happily: {
         label: "Happily Ever After Dachshunds",
         source: "https://www.happily-ever-after-dachshunds.com/",
-        title: "A faster trust path for Happily Ever After Dachshunds.",
-        lead: "This rough page pulls the available-puppy, nurse-breeder, health guarantee, and adoption-process details into one mobile-first path.",
+        title: "A clearer puppy page for Happily Ever After.",
+        lead: "This rough page pulls puppy status, breeder trust, health details, and adoption steps into one mobile-first path.",
         proof: "Your current page has the right ingredients. The opportunity is making them easier to see before a family calls.",
-        headline: "Mini dachshunds raised with care, with the next step easy to understand.",
-        text: "Families can see the puppy status, health promise, breeder context, and pickup process without hunting across the page.",
+        headline: "Mini dachshunds, care details, and the next step in one place.",
+        text: "A mobile-first page can show current puppy status, the health promise, breeder context, and pickup process before a family has to call.",
         image: "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_0663-high.jpg?enable-io=true&enable=upscale&crop=0.8333%3A1&width=800",
         chips: ["Family-raised", "Registered nurse breeder", "Health guarantee", "Phone-first inquiry"],
         scores: [
@@ -696,11 +743,11 @@
       desert: {
         label: "Desert Horizon Aussies & Dachshunds",
         source: "https://www.deserthorizonaussies.com/available-puppies",
-        title: "A clearer page for Desert Horizon.",
-        lead: "This rough page separates dachshund interest from the broader site and makes testing, home-raising, microchip, and contact details easier to scan.",
+        title: "A clearer dachshund path for Desert Horizon.",
+        lead: "This rough page separates dachshund interest from the broader site and makes testing, home care, and contact details easier to scan.",
         proof: "A mixed-breed site can still send dachshund families to a focused page that answers their first questions quickly.",
-        headline: "Puppies, health details, and contact in one clear place.",
-        text: "Families can see the puppy path, health-testing notes, and who to contact without reading through long mixed-breed copy.",
+        headline: "A focused puppy page for dachshund families.",
+        text: "A focused route can separate dachshund interest from broader site copy while keeping testing notes, care details, and contact close together.",
         image: "https://static.wixstatic.com/media/1c6923_aa9e412100154d91bd09693a403ff48f~mv2.jpg/v1/crop/x_0,y_0,w_1101,h_1743/fill/w_357,h_528,al_c,q_80,enc_avif,quality_auto/311820885_6135099696504676_3264293825314376773_n.jpg",
         chips: ["AKC Dachshunds", "Canine HealthCheck or Embark", "Microchipped", "Home-raised"],
         scores: [
@@ -730,11 +777,11 @@
       premier: {
         label: "Premier DNA Canines",
         source: "https://premierdnacanines.com/",
-        title: "A stronger trust-first path for Premier DNA Canines.",
-        lead: "This rough page keeps the health-first story but makes current availability, upcoming litters, and the inquiry step feel less like separate pieces.",
+        title: "A cleaner inquiry path for Premier DNA.",
+        lead: "This rough page keeps the health-first story while joining availability, upcoming litters, and inquiry details into one path.",
         proof: "The page already talks about genetic health and lifelong support. The preview makes those proof points sit beside the puppy decision.",
-        headline: "Mini dachshund puppies with health proof and a simpler inquiry path.",
-        text: "Families can scan puppy status, health screening, support, and application steps before reaching out.",
+        headline: "Health proof and puppy status, tied to the inquiry step.",
+        text: "The strongest proof points can sit beside current status, upcoming litters, and the next action instead of living in separate sections.",
         image: "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/family-puppy1.ec53074a8b604450b33d2b82cd2ae9cb.85f6c9db0561e597.a6948e40.png",
         chips: ["Genetic screening", "Health guarantee", "Early socialization", "Waiting list"],
         scores: [
