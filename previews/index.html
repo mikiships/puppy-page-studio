@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Puppy Page Studio Preview</title>
+  <style>
+    :root {
+      --ink: #17211f;
+      --soft: #3f4b47;
+      --muted: #6d7671;
+      --paper: #fbfaf5;
+      --cream: #f3ecdf;
+      --white: #fffef9;
+      --line: #ded7ca;
+      --moss: #28584b;
+      --fern: #dbe8dc;
+      --blue: #315f78;
+      --sky: #e7f1f5;
+      --clay: #aa604d;
+      --apricot: #f3d8c6;
+      --gold: #bd8935;
+      --shadow: 0 22px 60px rgba(23, 33, 31, .15);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(120deg, rgba(219, 232, 220, .7), transparent 38%, rgba(231, 241, 245, .8)),
+        var(--paper);
+      font-family: Optima, Candara, "Avenir Next", "Segoe UI", sans-serif;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(23, 33, 31, .11);
+      background: rgba(251, 250, 245, .92);
+      backdrop-filter: blur(18px);
+    }
+
+    .top-inner {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 900;
+    }
+
+    .mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background:
+        linear-gradient(135deg, transparent 0 42%, rgba(255,255,255,.7) 43% 58%, transparent 59%),
+        var(--moss);
+    }
+
+    .switcher {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 8px 0;
+    }
+
+    .switcher button {
+      border: 1px solid rgba(40, 88, 75, .22);
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--moss);
+      padding: 9px 12px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .switcher button.active {
+      background: var(--moss);
+      color: var(--white);
+    }
+
+    .notice {
+      border-bottom: 1px solid rgba(23, 33, 31, .1);
+      background: #17211f;
+      color: rgba(255,255,255,.84);
+      font-size: 13px;
+    }
+
+    .notice .wrap {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .notice strong {
+      color: #fff;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(380px, 1.1fr);
+      gap: 34px;
+      align-items: center;
+      padding: 46px 0 32px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 14px;
+      color: var(--clay);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      background: var(--clay);
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 610px;
+      margin-bottom: 17px;
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: clamp(38px, 5vw, 66px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 610px;
+      color: var(--soft);
+      font-size: 19px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 24px 0 18px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 15px;
+      border: 1px solid var(--moss);
+      border-radius: 8px;
+      background: var(--moss);
+      color: var(--white);
+      font-weight: 900;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--moss);
+    }
+
+    .proof-note {
+      display: grid;
+      grid-template-columns: 10px 1fr;
+      gap: 11px;
+      max-width: 600px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .proof-note::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      margin-top: 5px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 0 5px rgba(189, 137, 53, .16);
+    }
+
+    .mock-browser {
+      overflow: hidden;
+      border: 1px solid rgba(23, 33, 31, .13);
+      border-radius: 13px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .browser-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 42px;
+      padding: 0 15px;
+      border-bottom: 1px solid rgba(23, 33, 31, .1);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      background: rgba(255,255,255,.7);
+    }
+
+    .dots {
+      display: inline-flex;
+      gap: 6px;
+    }
+
+    .dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--clay);
+    }
+
+    .dots span:nth-child(2) { background: var(--gold); }
+    .dots span:nth-child(3) { background: var(--moss); }
+
+    .preview-hero {
+      min-height: 420px;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      background: linear-gradient(135deg, var(--cream), #fff);
+    }
+
+    .preview-copy {
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .preview-copy h2 {
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 39px;
+      line-height: 1.02;
+      letter-spacing: 0;
+      margin-bottom: 13px;
+    }
+
+    .mini-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 18px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 27px;
+      padding: 0 9px;
+      border-radius: 999px;
+      background: var(--fern);
+      color: #24473d;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .preview-img {
+      min-height: 420px;
+      background-position: center;
+      background-size: cover;
+      border-left: 1px solid rgba(23, 33, 31, .1);
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--line);
+      margin: 18px 0 34px;
+    }
+
+    .score {
+      min-height: 118px;
+      padding: 16px;
+      background: rgba(255,255,255,.86);
+    }
+
+    .score b {
+      display: block;
+      color: var(--moss);
+      font-size: 25px;
+      line-height: 1;
+      margin-bottom: 8px;
+      font-family: "Iowan Old Style", Georgia, serif;
+    }
+
+    .score strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .score span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .section {
+      padding: 34px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 22px;
+      margin-bottom: 18px;
+    }
+
+    .section h2 {
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 35px;
+      line-height: 1.05;
+      letter-spacing: 0;
+      margin-bottom: 0;
+    }
+
+    .section-head p {
+      max-width: 560px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--white);
+      box-shadow: 0 14px 34px rgba(23, 33, 31, .09);
+    }
+
+    .card-img {
+      height: 190px;
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .card-body {
+      padding: 17px;
+    }
+
+    .card h3 {
+      margin-bottom: 7px;
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 25px;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 6px 11px;
+      margin: 12px 0 0;
+      color: var(--soft);
+      font-size: 13px;
+    }
+
+    .facts dt {
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .facts dd {
+      margin: 0;
+    }
+
+    .lower-grid {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255,255,255,.78);
+      padding: 22px;
+    }
+
+    .panel h3 {
+      margin-bottom: 13px;
+      font-size: 18px;
+    }
+
+    .steps {
+      display: grid;
+      gap: 12px;
+      counter-reset: step;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9px;
+      background: var(--moss);
+      color: var(--white);
+      font-weight: 900;
+    }
+
+    .leaks {
+      display: grid;
+      gap: 12px;
+      padding-left: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .leaks li {
+      padding: 13px 14px;
+      border-left: 4px solid var(--clay);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--soft);
+    }
+
+    .footer {
+      margin-top: 28px;
+      padding: 26px 0 44px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 920px) {
+      .top-inner, .notice .wrap {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero, .preview-hero, .lower-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-img {
+        min-height: 300px;
+        border-left: 0;
+        border-top: 1px solid rgba(23, 33, 31, .1);
+      }
+
+      .score-grid, .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { padding: 0 16px; }
+      .hero { padding-top: 32px; }
+      .preview-copy { padding: 24px; }
+      .actions { flex-direction: column; align-items: stretch; }
+      .button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="notice">
+    <div class="wrap">
+      <span><strong>Puppy Inquiry Leak Audit.</strong> Rough private preview built from public site information, not a finished redesign.</span>
+      <span id="sourceLine">Puppy Page Studio</span>
+    </div>
+  </div>
+
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="https://www.puppypagestudio.com/">
+        <span class="mark" aria-hidden="true"></span>
+        <span>Puppy Page Studio</span>
+      </a>
+      <nav class="switcher" aria-label="Preview switcher">
+        <button type="button" data-site="happily">Happily Ever After</button>
+        <button type="button" data-site="desert">Desert Horizon</button>
+        <button type="button" data-site="premier">Premier DNA</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <div class="kicker" id="kicker">Preview</div>
+        <h1 id="pageTitle">A clearer puppy page for serious families.</h1>
+        <p class="lead" id="pageLead"></p>
+        <div class="actions">
+          <a class="button" id="primaryCta" href="#" target="_blank" rel="noopener">Open current site</a>
+          <a class="button secondary" href="mailto:hello@puppypagestudio.com">Reply to Puppy Page Studio</a>
+        </div>
+        <p class="proof-note" id="proofNote"></p>
+      </div>
+
+      <div class="mock-browser" aria-label="Rough preview of redesigned breeder page">
+        <div class="browser-top">
+          <span class="dots"><span></span><span></span><span></span></span>
+          <span id="browserLabel">rough-preview</span>
+        </div>
+        <div class="preview-hero">
+          <div class="preview-copy">
+            <h2 id="previewHeadline"></h2>
+            <p id="previewText"></p>
+            <div class="mini-meta" id="chips"></div>
+          </div>
+          <div class="preview-img" id="heroImage" role="img" aria-label="Breeder site photo"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="score-grid" id="scoreGrid" aria-label="Inquiry leak scorecard"></section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>What families need to see quickly</h2>
+        <p id="cardsIntro"></p>
+      </div>
+      <div class="cards" id="cards"></div>
+    </section>
+
+    <section class="section lower-grid">
+      <div class="panel">
+        <h3>Inquiry path</h3>
+        <div class="steps" id="steps"></div>
+      </div>
+      <div class="panel">
+        <h3>Likely leak points on the current site</h3>
+        <ul class="leaks" id="leaks"></ul>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>This is a rough first pass from public information already on the breeder's site. Puppy Page Studio does not promise rankings or sales from the outside. The goal is simpler: make the page easier for mobile families to scan, trust, and act on.</p>
+    </footer>
+  </main>
+
+  <script>
+    const previews = {
+      happily: {
+        label: "Happily Ever After Dachshunds",
+        source: "https://www.happily-ever-after-dachshunds.com/",
+        title: "A faster trust path for Happily Ever After Dachshunds.",
+        lead: "This rough page pulls the available-puppy, nurse-breeder, health guarantee, and adoption-process details into one mobile-first path.",
+        proof: "Your current page has the right ingredients. The opportunity is making them easier to see before a family calls.",
+        headline: "Mini dachshunds raised with care, with the next step easy to understand.",
+        text: "Families can see the puppy status, health promise, breeder context, and pickup process without hunting across the page.",
+        image: "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_0663-high.jpg?enable-io=true&enable=upscale&crop=0.8333%3A1&width=800",
+        chips: ["Family-raised", "Registered nurse breeder", "Health guarantee", "Phone-first inquiry"],
+        scores: [
+          ["B", "Trust proof", "Good material, but it can sit closer to the puppy call to action."],
+          ["C+", "Puppy status", "Available-puppy language needs clearer status and next step."],
+          ["B-", "Mobile scan", "The page can answer questions faster on a phone."],
+          ["B", "Inquiry path", "Phone route is clear, but the adoption steps can work harder."],
+          ["C+", "SEO basics", "More structured headings would help humans and search engines."]
+        ],
+        cardsIntro: "The preview keeps the breeder's own story, then moves the decision-making details closer to the puppy information.",
+        cards: [
+          ["Available puppies", "Current status", "Show each puppy or litter with a visible status, ready window, and inquiry button.", "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_1072-standard-ay58uk.jpg"],
+          ["Why trust this breeder", "Health and care", "Bring the nurse-breeder note and health guarantee into the first screen families scan.", "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_2691-high-xl9eve.jpg"],
+          ["How adoption works", "Less back-and-forth", "Make deposit, pickup, and payment expectations obvious before the call.", "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_0663-high.jpg?enable-io=true&enable=upscale&crop=0.8333%3A1&width=800"]
+        ],
+        steps: [
+          ["Pick the puppy or litter", "Show what is available and what information the breeder needs first."],
+          ["Call or email Lyn", "Keep the phone number visible next to the current puppy details."],
+          ["Reserve and prepare pickup", "Explain deposit and final payment timing without burying it in FAQ text."]
+        ],
+        leaks: [
+          "Warm families may miss the health guarantee because it appears after the first availability section.",
+          "The page says available puppies, but the decision path could show status, deposit, and next step closer together.",
+          "Search and mobile visitors would benefit from clearer section headings around available puppies and adoption process."
+        ]
+      },
+      desert: {
+        label: "Desert Horizon Aussies & Dachshunds",
+        source: "https://www.deserthorizonaussies.com/available-puppies",
+        title: "A cleaner available-puppies path for Desert Horizon.",
+        lead: "This rough page separates dachshund interest from the broader site and makes testing, home-raising, microchip, and contact details easier to scan.",
+        proof: "A mixed-breed site can still send dachshund families to a focused page that answers their first questions quickly.",
+        headline: "Available puppies, health details, and contact steps in one clear place.",
+        text: "Families can see the puppy path, health-testing notes, and who to contact without reading through long mixed-breed copy.",
+        image: "https://static.wixstatic.com/media/1c6923_aa9e412100154d91bd09693a403ff48f~mv2.jpg/v1/crop/x_0,y_0,w_1101,h_1743/fill/w_357,h_528,al_c,q_80,enc_avif,quality_auto/311820885_6135099696504676_3264293825314376773_n.jpg",
+        chips: ["AKC Dachshunds", "Canine HealthCheck or Embark", "Microchipped", "Home-raised"],
+        scores: [
+          ["B+", "Trust proof", "Testing and home-raising details are strong and should be nearer the puppy cards."],
+          ["B-", "Puppy status", "Available puppies are present, but dachshund visitors need a cleaner path."],
+          ["C+", "Mobile scan", "Long paragraphs make important care details easy to miss."],
+          ["B", "Inquiry path", "Email and phone are available, but could sit beside each puppy section."],
+          ["B-", "SEO basics", "A focused dachshund availability page would be easier to understand."]
+        ],
+        cardsIntro: "The preview focuses the page around the dachshund buyer's job: see availability, trust the care, and know who to contact.",
+        cards: [
+          ["Dachshund availability", "Less mixed navigation", "Give dachshund families a direct route from puppy interest to next step.", "https://static.wixstatic.com/media/1c6923_aa9e412100154d91bd09693a403ff48f~mv2.jpg/v1/crop/x_0,y_0,w_1101,h_1743/fill/w_357,h_528,al_c,q_80,enc_avif,quality_auto/311820885_6135099696504676_3264293825314376773_n.jpg"],
+          ["Testing and care", "Trust details", "Move genetic testing, vaccinations, microchip, worming, and home-raised notes into a compact trust bar.", "https://static.wixstatic.com/media/1c6923_7dc0ea6e899e45b6b6434a699c9b6e69~mv2.jpg/v1/fill/w_429,h_188,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Bred%20With%20Heart%20Aussies%202023.jpg"],
+          ["Contact Mary or Dave", "Next step", "Keep phone and email next to the puppy section instead of making visitors hunt.", "https://static.wixstatic.com/media/1c6923_aa6695c712ae4734bf8f7e1c09c52661~mv2.jpg/v1/fill/w_900,h_117,al_c,q_80,enc_avif,quality_auto/a-painted-desert-saija-lehtonen.jpg"]
+        ],
+        steps: [
+          ["Choose dachshund or Aussie path", "Send each buyer to the right availability section quickly."],
+          ["Review testing and care", "Show health and microchip details before the family contacts you."],
+          ["Call, text, or email", "Keep Mary, Dave, and email contact routes visible on the same screen."]
+        ],
+        leaks: [
+          "Dachshund buyers can get mixed into the broader Aussies and Dachshunds navigation.",
+          "The health-testing and home-raised details are strong, but long copy makes them harder to absorb.",
+          "Phone and email are visible, but they can be closer to puppy availability for mobile visitors."
+        ]
+      },
+      premier: {
+        label: "Premier DNA Canines",
+        source: "https://premierdnacanines.com/",
+        title: "A stronger trust-first path for Premier DNA Canines.",
+        lead: "This rough page keeps the health-first story but makes current availability, upcoming litters, and the inquiry step feel less like separate pieces.",
+        proof: "The page already talks about genetic health and lifelong support. The preview makes those proof points sit beside the puppy decision.",
+        headline: "Mini dachshund puppies with health proof and a simpler inquiry path.",
+        text: "Families can scan puppy status, health screening, support, and application steps before reaching out.",
+        image: "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/family-puppy1.ec53074a8b604450b33d2b82cd2ae9cb.85f6c9db0561e597.a6948e40.png",
+        chips: ["Genetic screening", "Health guarantee", "Early socialization", "Waiting list"],
+        scores: [
+          ["B+", "Trust proof", "Health-first story is strong and can be tied directly to puppy cards."],
+          ["B-", "Puppy status", "Sold and upcoming-litter states should be clearer at a glance."],
+          ["B", "Mobile scan", "A compact layout would reduce scrolling before contact."],
+          ["B-", "Inquiry path", "Application and direct email can be clearer without adding pressure."],
+          ["B", "SEO basics", "Structured puppy and litter sections would clarify the page topic."]
+        ],
+        cardsIntro: "The preview avoids changing the brand. It mainly joins the proof, puppy status, and application path together.",
+        cards: [
+          ["Current and recent puppies", "Status clarity", "Separate sold, available, and waitlist puppies so families do not have to infer the next step.", "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/family-puppy2.ec53074a8b604450b33d2b82cd2ae9cb.d7bf037dde64a4e164ad0d8f4aca.png"],
+          ["Health-first proof", "Buyer confidence", "Put genetic screening, vet checks, and health guarantee next to the decision area.", "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/family-puppy3.ec53074a8b604450b33d2b82cd2ae9cb.6d376c1f2141d9d8.a6948e40.png"],
+          ["Waiting list", "Upcoming litters", "Let families join the right path when current puppies are sold.", "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/past-dapple-longhair.067565188cef4254b2df10bdd9612af7.4199e4204f09d85262792.png"]
+        ],
+        steps: [
+          ["Scan current status", "Separate sold puppies, upcoming litters, and waitlist choices."],
+          ["Read the health proof", "Keep the screening and guarantee details where the decision happens."],
+          ["Submit inquiry", "Make direct email and the application path simple without overloading the page."]
+        ],
+        leaks: [
+          "The health proof is good, but it can feel separated from the puppy selection moment.",
+          "Sold puppy cards and upcoming-litter copy may blur what a family should do next.",
+          "A clearer inquiry path can reduce back-and-forth from families who are not yet ready."
+        ]
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    let active = params.get("site") || "happily";
+    if (!previews[active]) active = "happily";
+
+    function make(tag, className, text) {
+      const el = document.createElement(tag);
+      if (className) el.className = className;
+      if (text) el.textContent = text;
+      return el;
+    }
+
+    function render(siteKey) {
+      const data = previews[siteKey];
+      active = siteKey;
+      document.title = data.label + " Preview";
+      history.replaceState(null, "", "?site=" + siteKey);
+
+      document.querySelectorAll(".switcher button").forEach((button) => {
+        button.classList.toggle("active", button.dataset.site === siteKey);
+      });
+
+      document.getElementById("sourceLine").textContent = data.label;
+      document.getElementById("kicker").textContent = data.label;
+      document.getElementById("pageTitle").textContent = data.title;
+      document.getElementById("pageLead").textContent = data.lead;
+      document.getElementById("proofNote").textContent = data.proof;
+      document.getElementById("primaryCta").href = data.source;
+      document.getElementById("browserLabel").textContent = data.label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      document.getElementById("previewHeadline").textContent = data.headline;
+      document.getElementById("previewText").textContent = data.text;
+      document.getElementById("heroImage").style.backgroundImage = "url('" + data.image + "')";
+      document.getElementById("cardsIntro").textContent = data.cardsIntro;
+
+      const chips = document.getElementById("chips");
+      chips.innerHTML = "";
+      data.chips.forEach((chip) => chips.appendChild(make("span", "chip", chip)));
+
+      const scoreGrid = document.getElementById("scoreGrid");
+      scoreGrid.innerHTML = "";
+      data.scores.forEach((score) => {
+        const item = make("div", "score");
+        item.appendChild(make("b", "", score[0]));
+        item.appendChild(make("strong", "", score[1]));
+        item.appendChild(make("span", "", score[2]));
+        scoreGrid.appendChild(item);
+      });
+
+      const cards = document.getElementById("cards");
+      cards.innerHTML = "";
+      data.cards.forEach((card) => {
+        const item = make("article", "card");
+        const img = make("div", "card-img");
+        img.style.backgroundImage = "url('" + card[3] + "')";
+        item.appendChild(img);
+        const body = make("div", "card-body");
+        body.appendChild(make("h3", "", card[0]));
+        body.appendChild(make("p", "", card[2]));
+        const facts = make("dl", "facts");
+        facts.appendChild(make("dt", "", "Role"));
+        facts.appendChild(make("dd", "", card[1]));
+        body.appendChild(facts);
+        item.appendChild(body);
+        cards.appendChild(item);
+      });
+
+      const steps = document.getElementById("steps");
+      steps.innerHTML = "";
+      data.steps.forEach((step) => {
+        const item = make("div", "step");
+        const body = make("div", "");
+        body.appendChild(make("strong", "", step[0]));
+        body.appendChild(make("p", "", step[1]));
+        item.appendChild(body);
+        steps.appendChild(item);
+      });
+
+      const leaks = document.getElementById("leaks");
+      leaks.innerHTML = "";
+      data.leaks.forEach((leak) => leaks.appendChild(make("li", "", leak)));
+    }
+
+    document.querySelectorAll(".switcher button").forEach((button) => {
+      button.addEventListener("click", () => render(button.dataset.site));
+    });
+
+    render(active);
+  </script>
+</body>
+</html>
