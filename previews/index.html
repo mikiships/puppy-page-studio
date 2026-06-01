@@ -394,18 +394,26 @@
       font-weight: 800;
     }
 
-    .puppy-grid {
+    .puppy-board {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
+      gap: 12px;
+      border: 1px solid color-mix(in srgb, var(--deep) 24%, transparent);
+      border-radius: 14px;
+      padding: 12px;
+      background: color-mix(in srgb, var(--white) 84%, var(--paper-2));
+      box-shadow: 0 18px 44px rgba(38, 25, 18, .08);
     }
 
     .puppy-card {
+      display: grid;
+      grid-template-columns: 156px minmax(0, 1fr) minmax(180px, .44fr);
+      gap: 16px;
+      align-items: stretch;
+      min-width: 0;
       overflow: hidden;
       border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(255,253,248,.9);
-      box-shadow: 0 16px 36px rgba(38, 25, 18, .08);
+      border-radius: 10px;
+      background: rgba(255,253,248,.94);
     }
 
     body.heritage .puppy-card,
@@ -417,26 +425,68 @@
     body.clean .puppy-card,
     body.clean .trust-list li,
     body.clean .step {
-      border-radius: 12px;
+      border-radius: 10px;
       box-shadow: 0 10px 28px rgba(22, 79, 85, .06);
-    }
-
-    body.clean .puppy-card:first-child {
-      grid-row: auto;
     }
 
     .puppy-card img {
       width: 100%;
-      height: 250px;
+      height: 100%;
+      min-height: 150px;
       object-fit: cover;
     }
 
-    .puppy-card:first-child img {
-      height: 250px;
+    .puppy-body {
+      min-width: 0;
+      padding: 18px 0;
     }
 
-    .puppy-body {
-      padding: 18px;
+    .puppy-aside {
+      display: grid;
+      align-content: center;
+      gap: 8px;
+      min-width: 0;
+      border-left: 1px solid var(--line);
+      padding: 16px;
+      background: color-mix(in srgb, var(--sage) 36%, transparent);
+    }
+
+    .puppy-kv {
+      display: grid;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .puppy-kv span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .puppy-kv strong {
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .puppy-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .puppy-tags span {
+      display: inline-flex;
+      min-height: 25px;
+      align-items: center;
+      border: 1px solid color-mix(in srgb, var(--deep) 14%, transparent);
+      border-radius: 999px;
+      padding: 0 9px;
+      color: var(--body);
+      font-size: 12px;
+      font-weight: 760;
     }
 
     .status {
@@ -452,6 +502,22 @@
       font-weight: 800;
     }
 
+    .status.available {
+      background: color-mix(in srgb, #2f795f 18%, white);
+      color: #245941;
+    }
+
+    .status.reserved {
+      background: color-mix(in srgb, var(--accent-2) 24%, white);
+      color: #754717;
+    }
+
+    .status.sold,
+    .status.waitlist {
+      background: color-mix(in srgb, var(--blue) 16%, white);
+      color: #244f60;
+    }
+
     h3 {
       margin-bottom: 8px;
       font-family: Georgia, "Times New Roman", serif;
@@ -461,6 +527,95 @@
     }
 
     .puppy-body p { margin-bottom: 0; }
+
+    .litter-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(290px, .46fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .litter-table {
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(255,253,248,.86);
+    }
+
+    .litter-row {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(190px, .58fr) minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding: 0 0 10px;
+    }
+
+    .litter-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .litter-row h3 {
+      margin-bottom: 5px;
+      font-size: 21px;
+    }
+
+    .litter-row p {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    .litter-meta {
+      display: grid;
+      gap: 4px;
+      color: var(--body);
+      font-size: 14px;
+      font-weight: 760;
+    }
+
+    .parent-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .parent-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      background: color-mix(in srgb, var(--white) 84%, var(--sage));
+    }
+
+    .parent-card .role {
+      display: inline-flex;
+      min-height: 25px;
+      align-items: center;
+      margin-bottom: 10px;
+      border-radius: 999px;
+      padding: 0 9px;
+      background: var(--deep);
+      color: #fffdf8;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .parent-card h3 {
+      margin-bottom: 7px;
+    }
+
+    .parent-card p {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .parent-card strong {
+      display: block;
+      color: var(--deep);
+      font-size: 13px;
+    }
 
     .care-layout {
       display: grid;
@@ -669,6 +824,7 @@
       .hero,
       .section-head,
       .care-layout,
+      .litter-layout,
       .story-band,
       .contact-card {
         grid-template-columns: 1fr;
@@ -691,13 +847,15 @@
         min-width: 0;
       }
 
-      .puppy-grid {
-        grid-template-columns: 1fr 1fr;
+      .puppy-card {
+        grid-template-columns: 138px minmax(0, 1fr);
       }
 
-      .puppy-card:first-child {
-        grid-column: span 2;
-        grid-row: auto;
+      .puppy-aside {
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        border-left: 0;
+        border-top: 1px solid var(--line);
       }
 
       .photo-note {
@@ -707,7 +865,7 @@
     }
 
     @media (max-width: 680px) {
-      .wrap { width: min(100% - 30px, 1180px); }
+      .wrap { width: min(1180px, calc(100% - 30px)); }
 
       .site,
       main,
@@ -730,6 +888,27 @@
         gap: 14px;
         overflow-x: auto;
         padding-bottom: 6px;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      h2 {
+        max-width: min(100%, 330px);
+        font-size: 26px;
+        line-height: 1.08;
+      }
+
+      .section-head p {
+        max-width: min(100%, 342px);
+        font-size: 15.5px;
+      }
+
+      .small-note {
+        max-width: min(100%, 330px);
+        font-size: 13px;
+        overflow-wrap: anywhere;
       }
 
       h1 {
@@ -755,19 +934,37 @@
         width: 100%;
       }
 
-      .quick-facts,
-      .puppy-grid,
       .steps {
         grid-template-columns: 1fr;
       }
 
-      .puppy-card:first-child {
-        grid-column: auto;
+      .quick-facts {
+        display: grid;
+        grid-template-columns: 1fr;
+        max-width: min(100%, 330px);
       }
 
-      .puppy-card:first-child img,
+      .fact {
+        border-radius: 14px;
+      }
+
+      .fact span {
+        display: block;
+        margin-left: 0;
+        margin-top: 3px;
+      }
+
+      .puppy-card,
+      .litter-row {
+        grid-template-columns: 1fr;
+      }
+
       .puppy-card img {
         height: 218px;
+      }
+
+      .puppy-aside {
+        grid-template-columns: 1fr;
       }
 
       .photo-frame {
@@ -809,8 +1006,9 @@
       <nav class="nav-links" aria-label="Page navigation">
         <a href="#top">Home</a>
         <a href="#puppies">Puppies</a>
+        <a href="#litters">Litters</a>
         <a href="#care">Care</a>
-        <a href="#story">About</a>
+        <a href="#story">Parents</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
@@ -841,13 +1039,28 @@
       <section class="wrap section" id="puppies">
         <div class="section-head">
           <div>
-            <div class="section-kicker">Available puppies</div>
+            <div class="section-kicker">Puppy board</div>
             <h2 id="puppyTitle"></h2>
             <p id="puppyIntro"></p>
           </div>
           <div class="small-note" id="puppyNote"></div>
         </div>
-        <div class="puppy-grid" id="puppyGrid"></div>
+        <div class="puppy-board" id="puppyGrid"></div>
+      </section>
+
+      <section class="wrap section" id="litters">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Litters and parents</div>
+            <h2 id="litterTitle"></h2>
+            <p id="litterIntro"></p>
+          </div>
+          <div class="small-note" id="litterNote"></div>
+        </div>
+        <div class="litter-layout">
+          <div class="litter-table" id="litterGrid"></div>
+          <div class="parent-stack" id="parentGrid"></div>
+        </div>
       </section>
 
       <section class="wrap section" id="care">
@@ -930,6 +1143,9 @@
         puppyTitle: "Puppy notes, status, and care basics",
         puppyIntro: "Families can scan who is available, what comes with each puppy, and how to ask about timing.",
         puppyNote: "Available, reserved, and upcoming notes stay current.",
+        litterTitle: "Current litter, previous litter, and parents in one view",
+        litterIntro: "The breeder can show today's status without losing the context families need: who the parents are and what happened with prior litters.",
+        litterNote: "Sample entries show the page shape, not live availability.",
         careTitle: "Care details families ask about first",
         careIntro: "Health guarantee, home care, deposit expectations, and pickup notes are grouped where families are already reading.",
         careNote: "Plain care details, not a form packet.",
@@ -947,9 +1163,17 @@
         contactHref: "https://www.happily-ever-after-dachshunds.com/",
         footer: "Happily Ever After Dachshunds • Miniature dachshunds in Mississippi",
         puppies: [
-          ["Puppy availability", "Each puppy or litter gets a clear status, ready window, and one inquiry path.", "Available / reserved / upcoming", "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_1072-standard-ay58uk.jpg"],
-          ["Health promise", "Health guarantee and vet care stay close to puppy photos, not on a separate search path.", "Care details", "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_2691-high-xl9eve.jpg"],
-          ["Pickup and deposit", "Families see the expected next step before they call, including deposit and pickup basics.", "Next step", "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_0663-high.jpg?enable-io=true&enable=upscale&crop=0.8333%3A1&width=900"]
+          { name: "Red dapple female", status: "Available", ready: "Ready window: ask Lyn", parents: "Rosie x Tucker", note: "Calm, handled daily, good candidate for a family that wants a quieter lap dog.", image: "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_1072-standard-ay58uk.jpg", tags: ["Mini dachshund", "Female", "Home raised"] },
+          { name: "Chocolate male", status: "Reserved", ready: "Go-home: planned pickup", parents: "Rosie x Tucker", note: "Reserved card stays visible so families understand litter status without calling about a puppy already spoken for.", image: "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_2691-high-xl9eve.jpg", tags: ["Reserved", "Deposit placed", "Vet checked"] },
+          { name: "Next litter interest list", status: "Waitlist", ready: "Timing: upcoming litter notes", parents: "Planned pairing", note: "When puppies are not available, the page gives families a real next step instead of a dead end.", image: "https://primary.jwwb.nl/public/r/q/s/temp-tqbdtxvdxvbcbgjynogw/img_0663-high.jpg?enable-io=true&enable=upscale&crop=0.8333%3A1&width=900", tags: ["Upcoming", "Ask timing", "Join list"] }
+        ],
+        litters: [
+          { name: "Rosie x Tucker", status: "Current litter", born: "Born: sample date", ready: "Ready: breeder fills in", parents: "Rosie, dam • Tucker, sire", note: "Use this row for the live litter overview, including how many are available, reserved, or sold." },
+          { name: "Spring miniature dachshunds", status: "Previous litter", born: "Born: past season", ready: "All placed", parents: "Past pairing", note: "Previous litters prove consistency and give families a sense of size, coat, and temperament history." }
+        ],
+        parents: [
+          { role: "Sire", name: "Tucker", traits: "Mini dachshund sire with the temperament details families ask about first.", testing: "Health notes and registration details live here." },
+          { role: "Dam", name: "Rosie", traits: "Home-raised dam, shown with care notes rather than hidden in a separate gallery.", testing: "Vet care, pregnancy/litter notes, and go-home context stay visible." }
         ],
         trust: [
           ["Are puppies available?", "Current status belongs near the top, not hidden behind old updates.", "Availability"],
@@ -978,6 +1202,9 @@
         puppyTitle: "Availability, care, and contact",
         puppyIntro: "AKC notes, vaccines, microchip, and home-raised details sit beside the puppy decision.",
         puppyNote: "Separate breed routes keep families oriented.",
+        litterTitle: "Aussie and dachshund litter status without the maze",
+        litterIntro: "Families can tell what is available now, what is reserved, what sold, and which parent pair produced the litter.",
+        litterNote: "Sample rows show how Mary and Dave could keep each breed path current.",
         careTitle: "Care basics without the hunt",
         careIntro: "Testing, vaccines, microchip, and home care are grouped into one clear trust story.",
         careNote: "Grounded, direct, and easy to scan.",
@@ -995,9 +1222,17 @@
         contactHref: "https://www.deserthorizonaussies.com/available-puppies",
         footer: "Desert Horizon Aussies & Dachshunds • Arizona",
         puppies: [
-          ["Availability, care, and contact", "A direct dachshund section keeps visitors from sorting through unrelated pages.", "Available / planned", "https://static.wixstatic.com/media/1c6923_aa9e412100154d91bd09693a403ff48f~mv2.jpg/v1/crop/x_0,y_0,w_1101,h_1743/fill/w_520,h_720,al_c,q_80,enc_avif,quality_auto/311820885_6135099696504676_3264293825314376773_n.jpg"],
-          ["Testing and care", "Testing, vaccines, microchip, and home care work best as grouped trust cues.", "Care proof", "https://static.wixstatic.com/media/1c6923_7dc0ea6e899e45b6b6434a699c9b6e69~mv2.jpg/v1/fill/w_700,h_360,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Bred%20With%20Heart%20Aussies%202023.jpg"],
-          ["Contact route", "Phone and email stay near the puppy section so the next step is not a hunt.", "Call or email", "https://static.wixstatic.com/media/1c6923_aa6695c712ae4734bf8f7e1c09c52661~mv2.jpg/v1/fill/w_900,h_320,al_c,q_80,enc_avif,quality_auto/a-painted-desert-saija-lehtonen.jpg"]
+          { name: "Dachshund puppy card", status: "Available", ready: "Ready: breeder fills in", parents: "Dachshund sire x dam", note: "Breed-specific puppy card with AKC, vaccine, and pickup notes beside the inquiry action.", image: "https://static.wixstatic.com/media/1c6923_aa9e412100154d91bd09693a403ff48f~mv2.jpg/v1/crop/x_0,y_0,w_1101,h_1743/fill/w_520,h_720,al_c,q_80,enc_avif,quality_auto/311820885_6135099696504676_3264293825314376773_n.jpg", tags: ["Dachshund", "AKC notes", "Arizona"] },
+          { name: "Aussie puppy card", status: "Reserved", ready: "Pickup: scheduled", parents: "Aussie sire x dam", note: "Reserved puppies still teach families what the program produces and reduce duplicate availability questions.", image: "https://static.wixstatic.com/media/1c6923_7dc0ea6e899e45b6b6434a699c9b6e69~mv2.jpg/v1/fill/w_700,h_360,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Bred%20With%20Heart%20Aussies%202023.jpg", tags: ["Aussie", "Reserved", "Home raised"] },
+          { name: "Planned litter interest", status: "Waitlist", ready: "Next planned timing", parents: "Planned pairing", note: "The page gives families a place to land when the current litter is sold or the breed they want is not available.", image: "https://static.wixstatic.com/media/1c6923_aa6695c712ae4734bf8f7e1c09c52661~mv2.jpg/v1/fill/w_900,h_320,al_c,q_80,enc_avif,quality_auto/a-painted-desert-saija-lehtonen.jpg", tags: ["Planned", "Ask Mary or Dave", "Breed route"] }
+        ],
+        litters: [
+          { name: "Dachshund litter", status: "Current", born: "Born: sample date", ready: "Ready: breeder fills in", parents: "Dachshund sire • dachshund dam", note: "Show available, reserved, and sold counts so callers know what question to ask." },
+          { name: "Aussie litter", status: "Previous", born: "Born: past season", ready: "All placed", parents: "Aussie sire • Aussie dam", note: "Previous litter row anchors the breeder's track record without forcing families through a gallery hunt." }
+        ],
+        parents: [
+          { role: "Sire", name: "Dachshund sire profile", traits: "Breed, coat, temperament, and registration details in one scannable parent card.", testing: "AKC/testing notes, vaccine expectations, and breeder notes can sit here." },
+          { role: "Dam", name: "Aussie dam profile", traits: "Breed-specific parent profile keeps families oriented when the program has more than one breed.", testing: "Health and home-care notes stay visible beside the puppy path." }
         ],
         trust: [
           ["Is this the right breed page?", "Make the dachshund path obvious as soon as someone lands.", "Breed path"],
@@ -1026,6 +1261,9 @@
         puppyTitle: "Current, planned, and waitlist paths",
         puppyIntro: "Families can see whether to inquire now, wait for a planned litter, or join the list.",
         puppyNote: "Structured, bright, and fast to scan.",
+        litterTitle: "Health-tested litters with status history",
+        litterIntro: "Premier's strongest story is health proof tied directly to each puppy, litter, sire, and dam.",
+        litterNote: "Sample health/status rows show the structure for live updates.",
         careTitle: "Health proof at the decision point",
         careIntro: "Genetic screening, vet checks, and the health guarantee sit beside current status and upcoming litter details.",
         careNote: "A cleaner structure turns strong breeder practices into visible trust.",
@@ -1043,9 +1281,17 @@
         contactHref: "https://premierdnacanines.com/",
         footer: "Premier DNA Canines • Health-first dachshunds",
         puppies: [
-          ["Current status", "Separate available, sold, and upcoming puppies so the page feels current.", "Status clarity", "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/family-puppy2.ec53074a8b604450b33d2b82cd2ae9cb.d7bf037dde64a4e164ad0d8f4aca.png"],
-          ["Health proof", "Genetic screening, vet checks, and health guarantee stay close to the decision area.", "Trust detail", "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/family-puppy3.ec53074a8b604450b33d2b82cd2ae9cb.6d376c1f2141d9d8.a6948e40.png"],
-          ["Waitlist path", "When puppies are sold, families get a clear upcoming-litter or waitlist route.", "Next step", "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/past-dapple-longhair.067565188cef4254b2df10bdd9612af7.4199e4204f09d85262792.png"]
+          { name: "Cream female", status: "Available", ready: "Ready: breeder fills in", parents: "Health-tested pairing", note: "Availability, genetic screening cue, and inquiry path sit in the same card.", image: "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/family-puppy2.ec53074a8b604450b33d2b82cd2ae9cb.d7bf037dde64a4e164ad0d8f4aca.png", tags: ["Health-tested line", "Female", "Vet checked"] },
+          { name: "Dapple longhair", status: "Sold", ready: "Placed with family", parents: "Past pairing", note: "Sold examples help families see previous coat outcomes and reduce 'do you ever have...' questions.", image: "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/past-dapple-longhair.067565188cef4254b2df10bdd9612af7.4199e4204f09d85262792.png", tags: ["Previous puppy", "Sold", "Longhair"] },
+          { name: "Planned litter", status: "Waitlist", ready: "Timing: next pairing", parents: "Screened sire x dam", note: "If current puppies are gone, families get the health-tested waitlist path immediately.", image: "https://static.websitebuilder-cdn.com/17236aa677770e8d/media/img/family-puppy3.ec53074a8b604450b33d2b82cd2ae9cb.6d376c1f2141d9d8.a6948e40.png", tags: ["Planned", "Waitlist", "Genetic screening"] }
+        ],
+        litters: [
+          { name: "Health-tested dachshund litter", status: "Current", born: "Born: sample date", ready: "Ready: breeder fills in", parents: "Screened sire • screened dam", note: "Row connects litter timing to genetic screening and current status." },
+          { name: "Dapple longhair litter", status: "Previous", born: "Born: past season", ready: "All placed", parents: "Past pairing", note: "Previous litter history shows outcome, coat, and placement status." }
+        ],
+        parents: [
+          { role: "Sire", name: "Screened sire", traits: "Temperament, coat, and structure details belong beside the puppy board.", testing: "Genetic panel, vet checks, and registry notes can be summarized here." },
+          { role: "Dam", name: "Screened dam", traits: "Dam profile helps families understand size, temperament, and expected litter traits.", testing: "Health guarantee context and breeding notes stay close to availability." }
         ],
         trust: [
           ["Are puppies available now?", "Make availability and sold status clear at a glance.", "Status"],
@@ -1071,6 +1317,10 @@
       return node;
     }
 
+    function statusClass(status) {
+      return String(status || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    }
+
     function render(siteKey) {
       const data = previews[siteKey];
       active = siteKey;
@@ -1090,6 +1340,9 @@
       document.getElementById("puppyTitle").textContent = data.puppyTitle;
       document.getElementById("puppyIntro").textContent = data.puppyIntro;
       document.getElementById("puppyNote").textContent = data.puppyNote;
+      document.getElementById("litterTitle").textContent = data.litterTitle;
+      document.getElementById("litterIntro").textContent = data.litterIntro;
+      document.getElementById("litterNote").textContent = data.litterNote;
       document.getElementById("careTitle").textContent = data.careTitle;
       document.getElementById("careIntro").textContent = data.careIntro;
       document.getElementById("careNote").textContent = data.careNote;
@@ -1119,19 +1372,60 @@
       data.puppies.forEach((puppy) => {
         const card = el("article", "puppy-card");
         const img = el("img");
-        img.src = puppy[3];
-        img.alt = puppy[0];
+        img.src = puppy.image;
+        img.alt = puppy.name;
         img.onerror = () => {
           img.onerror = null;
           img.src = data.heroImage;
         };
         card.appendChild(img);
         const body = el("div", "puppy-body");
-        body.appendChild(el("span", "status", puppy[2]));
-        body.appendChild(el("h3", "", puppy[0]));
-        body.appendChild(el("p", "", puppy[1]));
+        body.appendChild(el("span", "status " + statusClass(puppy.status), puppy.status));
+        body.appendChild(el("h3", "", puppy.name));
+        body.appendChild(el("p", "", puppy.note));
+        const tags = el("div", "puppy-tags");
+        puppy.tags.forEach((tag) => tags.appendChild(el("span", "", tag)));
+        body.appendChild(tags);
         card.appendChild(body);
+        const aside = el("aside", "puppy-aside");
+        const ready = el("div", "puppy-kv");
+        ready.appendChild(el("span", "", "Timing"));
+        ready.appendChild(el("strong", "", puppy.ready));
+        const parents = el("div", "puppy-kv");
+        parents.appendChild(el("span", "", "Parents"));
+        parents.appendChild(el("strong", "", puppy.parents));
+        aside.appendChild(ready);
+        aside.appendChild(parents);
+        card.appendChild(aside);
         puppyGrid.appendChild(card);
+      });
+
+      const litterGrid = document.getElementById("litterGrid");
+      litterGrid.innerHTML = "";
+      data.litters.forEach((litter) => {
+        const row = el("article", "litter-row");
+        const title = el("div");
+        title.appendChild(el("span", "status " + statusClass(litter.status), litter.status));
+        title.appendChild(el("h3", "", litter.name));
+        const meta = el("div", "litter-meta");
+        meta.appendChild(el("span", "", litter.born));
+        meta.appendChild(el("span", "", litter.ready));
+        meta.appendChild(el("span", "", litter.parents));
+        row.appendChild(title);
+        row.appendChild(meta);
+        row.appendChild(el("p", "", litter.note));
+        litterGrid.appendChild(row);
+      });
+
+      const parentGrid = document.getElementById("parentGrid");
+      parentGrid.innerHTML = "";
+      data.parents.forEach((parent) => {
+        const card = el("article", "parent-card");
+        card.appendChild(el("span", "role", parent.role));
+        card.appendChild(el("h3", "", parent.name));
+        card.appendChild(el("p", "", parent.traits));
+        card.appendChild(el("strong", "", parent.testing));
+        parentGrid.appendChild(card);
       });
 
       const carePanelList = document.getElementById("carePanelList");
