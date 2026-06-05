@@ -1,0 +1,1325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Happily Ever After Dachshunds | Puppy Ledger</title>
+  <meta name="description" content="A source-backed puppy availability ledger for Happily Ever After Dachshunds.">
+  <meta name="robots" content="noindex,nofollow">
+  <style>
+    :root {
+      --ink: #111312;
+      --graphite: #232825;
+      --muted: #6a716d;
+      --paper: #f7f6f0;
+      --bone: #fffdf4;
+      --line: #d9d5c8;
+      --line-dark: #353935;
+      --aqua: #48e0cc;
+      --tomato: #f0523d;
+      --lichen: #b9c66b;
+      --steel: #dfe7e3;
+      --radius: 8px;
+      --sans: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      --serif: Georgia, "Times New Roman", serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(17,19,18,.08) 1px, transparent 1px) 0 0 / 56px 56px,
+        linear-gradient(180deg, #fbfaf3 0, #f0efe7 54%, #e2e8e3 100%);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.5;
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, select { font: inherit; letter-spacing: 0; }
+    h1, h2, h3, p { margin-top: 0; }
+
+    .skip-link {
+      position: absolute;
+      left: 12px;
+      top: -44px;
+      z-index: 100;
+      padding: 10px 12px;
+      color: var(--bone);
+      background: var(--ink);
+    }
+
+    .skip-link:focus { top: 12px; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      min-height: 68px;
+      border-bottom: 1px solid rgba(17,19,18,.18);
+      background: rgba(247,246,240,.92);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      min-width: 0;
+      display: flex;
+      align-items: stretch;
+      min-height: 68px;
+      border-right: 1px solid rgba(17,19,18,.18);
+    }
+
+    .brand-mark {
+      width: 68px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      color: var(--ink);
+      background: var(--aqua);
+      font-size: 22px;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .brand-copy {
+      min-width: 0;
+      padding: 11px 18px 9px;
+    }
+
+    .brand-copy strong {
+      display: block;
+      overflow-wrap: anywhere;
+      font-size: 15px;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .brand-copy span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      padding: 0 12px;
+    }
+
+    .nav-links a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 12px;
+      border: 1px solid transparent;
+      color: var(--graphite);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .nav-links a:focus-visible,
+    .nav-links a:hover {
+      border-color: rgba(17,19,18,.22);
+      background: rgba(255,253,244,.74);
+      outline: 0;
+    }
+
+    .nav-links .cta {
+      color: var(--bone);
+      background: var(--ink);
+    }
+
+    main { min-width: 0; }
+
+    .hero {
+      position: relative;
+      min-height: calc(100svh - 68px);
+      display: grid;
+      grid-template-columns: minmax(320px, .88fr) minmax(0, 1.12fr);
+      border-bottom: 1px solid rgba(17,19,18,.2);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(135deg, rgba(72,224,204,.16), transparent 36%),
+        linear-gradient(315deg, rgba(240,82,61,.12), transparent 42%);
+    }
+
+    .index-panel {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: inherit;
+      border-right: 1px solid rgba(17,19,18,.22);
+      background: rgba(255,253,244,.68);
+    }
+
+    .index-head {
+      padding: clamp(20px, 4vw, 44px);
+      border-bottom: 1px solid rgba(17,19,18,.18);
+    }
+
+    .source-kicker {
+      display: inline-grid;
+      grid-auto-flow: column;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 22px;
+      color: var(--tomato);
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .source-kicker::before {
+      content: "";
+      width: 36px;
+      height: 2px;
+      background: currentColor;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin-bottom: 20px;
+      font-family: var(--serif);
+      font-size: clamp(50px, 8.6vw, 128px);
+      line-height: .84;
+      font-weight: 700;
+    }
+
+    .lead {
+      max-width: 560px;
+      margin-bottom: 0;
+      color: var(--graphite);
+      font-size: clamp(17px, 1.65vw, 21px);
+    }
+
+    .mobile-ledger-peek {
+      display: none;
+    }
+
+    .record-count {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: end;
+      gap: 14px;
+      padding: clamp(20px, 4vw, 44px);
+      border-bottom: 1px solid rgba(17,19,18,.18);
+    }
+
+    .record-count strong {
+      display: block;
+      color: var(--ink);
+      font-size: clamp(118px, 18vw, 240px);
+      line-height: .72;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+
+    .record-count span {
+      display: block;
+      max-width: 190px;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .contact-strip {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: clamp(18px, 3vw, 32px) clamp(20px, 4vw, 44px);
+      background: var(--ink);
+      color: var(--bone);
+    }
+
+    .contact-strip p {
+      margin: 0;
+      color: rgba(255,253,244,.76);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .button {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      border: 1px solid currentColor;
+      border-radius: var(--radius);
+      color: inherit;
+      background: transparent;
+      font-size: 12px;
+      font-weight: 950;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .button.primary {
+      border-color: var(--aqua);
+      color: var(--ink);
+      background: var(--aqua);
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-1px);
+      outline: 2px solid var(--tomato);
+      outline-offset: 3px;
+    }
+
+    .wall {
+      position: relative;
+      z-index: 1;
+      min-height: inherit;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      background: rgba(17,19,18,.96);
+      color: var(--bone);
+    }
+
+    .wall-toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: end;
+      padding: clamp(18px, 3vw, 32px);
+      border-bottom: 1px solid rgba(255,253,244,.18);
+    }
+
+    .wall-toolbar h2 {
+      margin: 0 0 4px;
+      font-size: clamp(22px, 3vw, 38px);
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .wall-toolbar p {
+      max-width: 640px;
+      margin: 0;
+      color: rgba(255,253,244,.68);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .filter {
+      min-width: 124px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .filter label {
+      color: rgba(255,253,244,.58);
+      font-size: 10px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .filter select {
+      min-height: 38px;
+      border: 1px solid rgba(255,253,244,.18);
+      border-radius: 0;
+      color: var(--bone);
+      background: #191d1b;
+      font-weight: 850;
+    }
+
+    .ledger-wall {
+      display: grid;
+      grid-template-columns: 58px minmax(0, 1fr);
+      min-height: 0;
+    }
+
+    .status-spine {
+      display: grid;
+      grid-template-rows: repeat(8, 1fr);
+      border-right: 1px solid rgba(255,253,244,.16);
+    }
+
+    .status-spine span {
+      display: grid;
+      place-items: center;
+      border-bottom: 1px solid rgba(255,253,244,.12);
+      color: rgba(255,253,244,.48);
+      font-size: 10px;
+      font-weight: 950;
+      writing-mode: vertical-rl;
+      text-transform: uppercase;
+    }
+
+    .records {
+      display: grid;
+      grid-template-rows: repeat(2, minmax(250px, 1fr));
+      min-height: 0;
+    }
+
+    .ledger-record {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(230px, .62fr) minmax(0, 1fr);
+      min-height: 250px;
+      border-bottom: 1px solid rgba(255,253,244,.18);
+      overflow: hidden;
+    }
+
+    .ledger-record.hidden { display: none; }
+
+    .ledger-photo {
+      position: relative;
+      min-height: 250px;
+      border-right: 1px solid rgba(255,253,244,.16);
+      background: #222;
+      overflow: hidden;
+    }
+
+    .ledger-photo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--photo) center / cover no-repeat;
+      filter: saturate(.94) contrast(1.05);
+      transition: transform .45s ease, filter .45s ease;
+    }
+
+    .ledger-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(17,19,18,0) 44%, rgba(17,19,18,.62)),
+        linear-gradient(90deg, rgba(72,224,204,.18), transparent 48%);
+    }
+
+    .ledger-record:hover .ledger-photo::before,
+    .ledger-record:focus-within .ledger-photo::before {
+      transform: scale(1.04);
+      filter: saturate(1.05) contrast(1.1);
+    }
+
+    .photo-label {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      z-index: 2;
+      display: inline-flex;
+      min-height: 28px;
+      align-items: center;
+      padding: 0 10px;
+      color: var(--ink);
+      background: var(--aqua);
+      font-size: 10px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .ledger-data {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-width: 0;
+    }
+
+    .record-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: start;
+      padding: clamp(18px, 3vw, 32px);
+      border-bottom: 1px solid rgba(255,253,244,.14);
+    }
+
+    .record-id {
+      color: var(--aqua);
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .ledger-record h3 {
+      margin: 6px 0 0;
+      font-size: clamp(30px, 4.6vw, 66px);
+      line-height: .88;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .status {
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10px;
+      border: 1px solid var(--tomato);
+      color: var(--tomato);
+      background: rgba(240,82,61,.12);
+      font-size: 10px;
+      font-weight: 950;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .record-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-bottom: 1px solid rgba(255,253,244,.14);
+    }
+
+    .fact {
+      min-height: 96px;
+      padding: 15px;
+      border-right: 1px solid rgba(255,253,244,.14);
+    }
+
+    .fact:last-child { border-right: 0; }
+
+    .fact b {
+      display: block;
+      margin-bottom: 7px;
+      color: rgba(255,253,244,.48);
+      font-size: 10px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .fact span {
+      display: block;
+      color: var(--bone);
+      font-size: clamp(15px, 1.5vw, 20px);
+      line-height: 1.08;
+      font-weight: 900;
+    }
+
+    .record-bottom {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      padding: clamp(16px, 2.5vw, 28px) clamp(18px, 3vw, 32px);
+    }
+
+    .record-bottom p {
+      max-width: 650px;
+      margin: 0;
+      color: rgba(255,253,244,.68);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .empty-state {
+      display: none;
+      padding: 34px;
+      color: var(--bone);
+      font-size: 18px;
+      font-weight: 850;
+    }
+
+    .empty-state.visible { display: block; }
+
+    .source-ledger,
+    .care-flow,
+    .inquiry {
+      display: grid;
+      grid-template-columns: minmax(260px, .52fr) minmax(0, 1fr);
+      border-bottom: 1px solid rgba(17,19,18,.2);
+      background: var(--bone);
+    }
+
+    .section-label {
+      padding: clamp(22px, 4vw, 42px);
+      border-right: 1px solid rgba(17,19,18,.18);
+    }
+
+    .section-label span {
+      display: inline-flex;
+      min-height: 28px;
+      align-items: center;
+      margin-bottom: 18px;
+      padding: 0 9px;
+      color: var(--ink);
+      background: var(--lichen);
+      font-size: 10px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .section-label h2 {
+      max-width: 360px;
+      margin-bottom: 12px;
+      font-size: clamp(31px, 4.6vw, 72px);
+      line-height: .9;
+      text-transform: uppercase;
+    }
+
+    .section-label p {
+      max-width: 420px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .ledger-list {
+      display: grid;
+      align-content: start;
+    }
+
+    .ledger-row {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      min-height: 82px;
+      border-bottom: 1px solid rgba(17,19,18,.14);
+    }
+
+    .ledger-row b,
+    .ledger-row span {
+      display: flex;
+      align-items: center;
+      padding: 16px 20px;
+    }
+
+    .ledger-row b {
+      border-right: 1px solid rgba(17,19,18,.14);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .ledger-row span {
+      color: var(--graphite);
+      font-size: clamp(16px, 1.5vw, 20px);
+      font-weight: 800;
+    }
+
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .flow-step {
+      min-height: 240px;
+      padding: clamp(18px, 3vw, 32px);
+      border-right: 1px solid rgba(17,19,18,.14);
+    }
+
+    .flow-step:last-child { border-right: 0; }
+
+    .flow-step strong {
+      display: block;
+      margin-bottom: 34px;
+      color: var(--tomato);
+      font-size: 42px;
+      line-height: 1;
+      font-weight: 950;
+    }
+
+    .flow-step b {
+      display: block;
+      margin-bottom: 9px;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+
+    .flow-step p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .inquiry {
+      background: var(--ink);
+      color: var(--bone);
+    }
+
+    .inquiry .section-label {
+      border-right-color: rgba(255,253,244,.18);
+    }
+
+    .inquiry .section-label p {
+      color: rgba(255,253,244,.68);
+    }
+
+    .inquiry-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, .44fr);
+      min-height: 420px;
+    }
+
+    .inquiry-copy {
+      display: grid;
+      align-content: center;
+      gap: 22px;
+      padding: clamp(24px, 5vw, 66px);
+    }
+
+    .inquiry-copy p {
+      max-width: 620px;
+      margin: 0;
+      color: rgba(255,253,244,.72);
+      font-size: clamp(18px, 2vw, 24px);
+    }
+
+    .inquiry-copy .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .inquiry-photo {
+      min-height: 320px;
+      border-left: 1px solid rgba(255,253,244,.18);
+      background:
+        linear-gradient(180deg, rgba(17,19,18,.12), rgba(17,19,18,.46)),
+        url("../assets/happily-hero-source.jpg") center / cover no-repeat;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px clamp(16px, 3vw, 34px);
+      color: var(--muted);
+      background: #e9ede8;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    dialog {
+      width: min(920px, calc(100vw - 28px));
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+    }
+
+    dialog::backdrop { background: rgba(17,19,18,.74); }
+
+    .drawer {
+      display: grid;
+      grid-template-columns: minmax(230px, .46fr) minmax(0, 1fr);
+      background: var(--bone);
+      box-shadow: 0 40px 100px rgba(0,0,0,.36);
+    }
+
+    .drawer-photo {
+      min-height: 500px;
+      background: var(--drawer-photo) center / cover no-repeat;
+    }
+
+    .drawer-body {
+      padding: clamp(22px, 4vw, 44px);
+    }
+
+    .drawer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: start;
+      margin-bottom: 24px;
+    }
+
+    .close {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .drawer h2 {
+      margin-bottom: 8px;
+      font-size: clamp(32px, 5vw, 64px);
+      line-height: .9;
+      text-transform: uppercase;
+    }
+
+    .drawer-summary {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .drawer-facts {
+      display: grid;
+      gap: 12px;
+      margin: 28px 0;
+    }
+
+    .drawer-facts div {
+      padding: 14px 0;
+      border-top: 1px solid rgba(17,19,18,.16);
+    }
+
+    .drawer-facts b {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 1040px) {
+      .hero,
+      .source-ledger,
+      .care-flow,
+      .inquiry {
+        grid-template-columns: 1fr;
+      }
+
+      .index-panel,
+      .section-label {
+        border-right: 0;
+      }
+
+      .hero { min-height: 0; }
+      .wall { min-height: 0; }
+      .wall-toolbar { grid-template-columns: 1fr; }
+      .filters { justify-content: flex-start; }
+      .flow-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .inquiry-panel { grid-template-columns: 1fr; }
+      .inquiry-photo { border-left: 0; }
+    }
+
+    @media (max-width: 760px) {
+      .topbar {
+        position: relative;
+        grid-template-columns: 1fr;
+      }
+
+      .brand {
+        min-height: 62px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(17,19,18,.14);
+      }
+
+      .brand-mark {
+        width: 62px;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding: 8px 10px;
+      }
+
+      .nav-links a {
+        min-height: 38px;
+        padding: 0 10px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .index-head {
+        padding: 24px 18px;
+      }
+
+      h1 {
+        margin-bottom: 14px;
+        font-size: clamp(42px, 13vw, 62px);
+      }
+
+      .lead {
+        font-size: 16px;
+      }
+
+      .mobile-ledger-peek {
+        display: grid;
+        grid-template-columns: 112px minmax(0, 1fr);
+        gap: 12px;
+        align-items: stretch;
+        min-height: 126px;
+        margin-top: 18px;
+        border: 1px solid rgba(17,19,18,.18);
+        background: var(--ink);
+        color: var(--bone);
+      }
+
+      .mobile-ledger-peek::before {
+        content: "";
+        background: url("../assets/happily-sale-pending-male-1.jpg") center / cover no-repeat;
+      }
+
+      .mobile-ledger-peek div {
+        min-width: 0;
+        display: grid;
+        align-content: center;
+        gap: 7px;
+        padding: 12px 12px 12px 0;
+      }
+
+      .mobile-ledger-peek b {
+        color: var(--aqua);
+        font-size: 10px;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .mobile-ledger-peek span {
+        font-size: 20px;
+        line-height: 1;
+        font-weight: 950;
+        text-transform: uppercase;
+      }
+
+      .mobile-ledger-peek a {
+        width: fit-content;
+        min-height: 32px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 9px;
+        border: 1px solid var(--aqua);
+        color: var(--ink);
+        background: var(--aqua);
+        font-size: 10px;
+        font-weight: 950;
+        text-transform: uppercase;
+      }
+
+      .record-count {
+        padding: 20px 18px;
+      }
+
+      .record-count strong {
+        font-size: clamp(112px, 35vw, 174px);
+      }
+
+      .contact-strip {
+        grid-template-columns: 1fr;
+        padding: 18px;
+      }
+
+      .wall-toolbar {
+        padding: 18px;
+      }
+
+      .filters {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .filter {
+        min-width: 0;
+      }
+
+      .ledger-wall {
+        grid-template-columns: 34px minmax(0, 1fr);
+      }
+
+      .status-spine span {
+        font-size: 8px;
+      }
+
+      .records {
+        grid-template-rows: none;
+      }
+
+      .ledger-record {
+        grid-template-columns: 1fr;
+      }
+
+      .ledger-photo {
+        min-height: 238px;
+        border-right: 0;
+      }
+
+      .record-top,
+      .record-bottom {
+        grid-template-columns: 1fr;
+        padding: 18px;
+      }
+
+      .ledger-record h3 {
+        font-size: clamp(33px, 12vw, 54px);
+      }
+
+      .record-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .fact {
+        min-height: 82px;
+      }
+
+      .ledger-row {
+        grid-template-columns: 1fr;
+      }
+
+      .ledger-row b {
+        border-right: 0;
+        border-bottom: 1px solid rgba(17,19,18,.1);
+        padding-bottom: 0;
+      }
+
+      .flow-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-step {
+        min-height: 0;
+        border-right: 0;
+        border-bottom: 1px solid rgba(17,19,18,.14);
+      }
+
+      .drawer {
+        grid-template-columns: 1fr;
+      }
+
+      .drawer-photo {
+        min-height: 260px;
+      }
+
+      footer {
+        display: grid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#puppies">Skip to puppies</a>
+
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Happily Ever After Dachshunds home">
+      <span class="brand-mark">HEA</span>
+      <span class="brand-copy">
+        <strong>Happily Ever After Dachshunds</strong>
+        <span>Miniature Dachshund Puppy Ledger</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#puppies">Puppies</a>
+      <a href="#source">Listing facts</a>
+      <a href="#care">Care</a>
+      <a class="cta" href="#inquiry">Contact Lyn</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="index-panel">
+        <div class="index-head">
+          <div class="source-kicker">Source-backed June listing</div>
+          <h1 id="page-title">Puppy ledger for serious families.</h1>
+          <p class="lead">Two black-and-tan short-hair male miniature dachshunds from AKC champion lines, both shown as sale pending. The page keeps the records visible without pretending unpublished details exist.</p>
+          <div class="mobile-ledger-peek" aria-label="Black-and-tan male puppy sale-pending record">
+            <div>
+              <b>Sale pending</b>
+              <span>Black-and-tan male</span>
+              <a href="#puppies">See record</a>
+            </div>
+          </div>
+        </div>
+        <div class="record-count" aria-label="Current puppy count">
+          <strong>02</strong>
+          <span>current male records, both pending</span>
+        </div>
+        <div class="contact-strip">
+          <p>Before a deposit, confirm the sale-pending status directly with Lyn.</p>
+          <a class="button primary" href="mailto:lynfils@yahoo.com?subject=Happily%20puppy%20status%20check">Ask about status</a>
+        </div>
+      </div>
+
+      <div class="wall" id="puppies">
+        <div class="wall-toolbar">
+          <div>
+            <h2>Availability wall</h2>
+            <p id="inventory-count">Showing 2 of 2 puppy records</p>
+          </div>
+          <div class="filters" aria-label="Filter puppy records">
+            <div class="filter">
+              <label for="status-filter">Status</label>
+              <select id="status-filter" data-filter="status">
+                <option value="all">All</option>
+                <option value="reserved">Sale pending</option>
+                <option value="available">Available</option>
+              </select>
+            </div>
+            <div class="filter">
+              <label for="sex-filter">Sex</label>
+              <select id="sex-filter" data-filter="sex">
+                <option value="all">All</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div class="filter">
+              <label for="coat-filter">Coat</label>
+              <select id="coat-filter" data-filter="coat">
+                <option value="all">All</option>
+                <option value="smooth">Short hair</option>
+              </select>
+            </div>
+            <div class="filter">
+              <label for="ready-filter">Next</label>
+              <select id="ready-filter" data-filter="ready">
+                <option value="all">All</option>
+                <option value="verify">Verify status</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="ledger-wall">
+          <div class="status-spine" aria-hidden="true">
+            <span>ledger</span><span>source</span><span>status</span><span>record</span>
+            <span>ledger</span><span>source</span><span>status</span><span>record</span>
+          </div>
+          <div class="records">
+            <article class="ledger-record" data-status="reserved" data-sex="male" data-coat="smooth" data-ready="verify" data-name="Black-and-tan male 1" data-price="$1,500 - sale pending for Ashley" data-parents="Parent names not published" data-summary="Black-and-tan short-hair male from AKC champion lines" data-published="Sex, coat, color, price, AKC champion-line note, and sale-pending status are published. Birth date, parent names, and temperament notes are not published." data-next="Contact Lyn to verify whether Ashley's pending sale is still active before treating this puppy as available." data-photo="../assets/happily-sale-pending-male-1.jpg">
+              <div class="ledger-photo" style="--photo: url('../assets/happily-sale-pending-male-1.jpg')" role="img" aria-label="Black-and-tan short-hair male dachshund puppy from the live breeder listing">
+                <span class="photo-label">Live listing photo</span>
+              </div>
+              <div class="ledger-data">
+                <div class="record-top">
+                  <div>
+                    <span class="record-id">Record 01 / current listing</span>
+                    <h3>Black-and-tan male 1</h3>
+                  </div>
+                  <span class="status">Sale pending</span>
+                </div>
+                <div class="record-grid">
+                  <div class="fact"><b>Sex</b><span>Male</span></div>
+                  <div class="fact"><b>Coat</b><span>Short hair</span></div>
+                  <div class="fact"><b>Price</b><span>$1,500</span></div>
+                  <div class="fact"><b>Buyer note</b><span>Ashley pending</span></div>
+                </div>
+                <div class="record-bottom">
+                  <p>Published as a black-and-tan short-hair male miniature dachshund from AKC champion lines. Parent names and birth date are not shown in the source listing.</p>
+                  <button class="button" type="button" data-open>Open record</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="ledger-record" data-status="reserved" data-sex="male" data-coat="smooth" data-ready="verify" data-name="Black-and-tan male 2" data-price="$1,500 - sale pending" data-parents="Parent names not published" data-summary="Second black-and-tan short-hair male from AKC champion lines" data-published="Sex, coat, color, price, AKC champion-line note, and sale-pending status are published. Birth date, parent names, and temperament notes are not published." data-next="Contact Lyn to verify whether the pending sale is still active before treating this puppy as available." data-photo="../assets/happily-sale-pending-male-2.jpg">
+              <div class="ledger-photo" style="--photo: url('../assets/happily-sale-pending-male-2.jpg')" role="img" aria-label="Second black-and-tan short-hair male dachshund puppy from the live breeder listing">
+                <span class="photo-label">Live listing photo</span>
+              </div>
+              <div class="ledger-data">
+                <div class="record-top">
+                  <div>
+                    <span class="record-id">Record 02 / current listing</span>
+                    <h3>Black-and-tan male 2</h3>
+                  </div>
+                  <span class="status">Sale pending</span>
+                </div>
+                <div class="record-grid">
+                  <div class="fact"><b>Sex</b><span>Male</span></div>
+                  <div class="fact"><b>Coat</b><span>Short hair</span></div>
+                  <div class="fact"><b>Price</b><span>$1,500</span></div>
+                  <div class="fact"><b>Buyer note</b><span>Pending</span></div>
+                </div>
+                <div class="record-bottom">
+                  <p>Shown as the second current black-and-tan short-hair male. The page keeps the record visible while making the sale-pending status impossible to miss.</p>
+                  <button class="button" type="button" data-open>Open record</button>
+                </div>
+              </div>
+            </article>
+
+            <p class="empty-state" id="inventory-empty">No puppy records match those filters. Reset a filter or ask Lyn about the waitlist.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="source-ledger" id="source" aria-labelledby="source-title">
+      <div class="section-label">
+        <span>Source ledger</span>
+        <h2 id="source-title">What is known, and what is not.</h2>
+        <p>This page separates published listing facts from missing details so families do not have to guess.</p>
+      </div>
+      <div class="ledger-list">
+        <div class="ledger-row"><b>Listing</b><span>Two black-and-tan short-hair male miniature dachshund puppies.</span></div>
+        <div class="ledger-row"><b>Status</b><span>Both records are sale pending; one names Ashley as the pending buyer.</span></div>
+        <div class="ledger-row"><b>Line note</b><span>The source lists AKC champion lines.</span></div>
+        <div class="ledger-row"><b>Published price</b><span>$1,500 per puppy.</span></div>
+        <div class="ledger-row"><b>Unpublished</b><span>Parent names, birth dates, temperament notes, and updated availability timing.</span></div>
+      </div>
+    </section>
+
+    <section class="care-flow" id="care" aria-labelledby="care-title">
+      <div class="section-label">
+        <span>Care path</span>
+        <h2 id="care-title">Buyer steps stay plain.</h2>
+        <p>The breeder's published process is simple. The page makes the sequence clear without inventing a complex application flow.</p>
+      </div>
+      <div class="flow-grid">
+        <div class="flow-step"><strong>1</strong><b>Status check</b><p>Call or email Lyn before treating a sale-pending puppy as open.</p></div>
+        <div class="flow-step"><strong>2</strong><b>Meet puppies</b><p>Confirm temperament, fit, pickup timing, and what is included.</p></div>
+        <div class="flow-step"><strong>3</strong><b>Deposit</b><p>A deposit reserves a puppy after the breeder confirms status.</p></div>
+        <div class="flow-step"><strong>4</strong><b>Pickup</b><p>Final payment is due in cash at puppy pickup, per the published process.</p></div>
+      </div>
+    </section>
+
+    <section class="inquiry" id="inquiry" aria-labelledby="inquiry-title">
+      <div class="section-label">
+        <span>Contact</span>
+        <h2 id="inquiry-title">Ask Lyn before deciding.</h2>
+        <p>Both puppy records are marked pending, so the right next step is a status check, not a deposit assumption.</p>
+      </div>
+      <div class="inquiry-panel">
+        <div class="inquiry-copy">
+          <p>Use this page as a current-record view, then confirm directly whether either pending sale changed.</p>
+          <div class="actions">
+            <a class="button primary" href="mailto:lynfils@yahoo.com?subject=Happily%20puppy%20status%20check">Email Lyn</a>
+            <a class="button" href="#puppies">Review puppy records</a>
+          </div>
+        </div>
+        <div class="inquiry-photo" role="img" aria-label="Happily Ever After Dachshunds source photo with dachshunds"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Happily Ever After Dachshunds puppy ledger concept.</span>
+    <span>Source-backed preview. Unpublished details remain marked as unpublished.</span>
+  </footer>
+
+  <dialog id="puppy-dialog" aria-labelledby="dialog-title">
+    <div class="drawer">
+      <div class="drawer-photo" id="dialog-photo" role="img" aria-label="Selected puppy listing photo"></div>
+      <div class="drawer-body">
+        <div class="drawer-top">
+          <div>
+            <span class="status" id="dialog-status">Sale pending</span>
+            <h2 id="dialog-title">Puppy record</h2>
+            <p class="drawer-summary" id="dialog-summary">Source-backed listing detail</p>
+          </div>
+          <button class="close" type="button" id="dialog-close" aria-label="Close puppy record">x</button>
+        </div>
+        <div class="drawer-facts">
+          <div><b>Published price</b><span id="dialog-price">$1,500 - sale pending</span></div>
+          <div><b>Parents</b><span id="dialog-parents">Parent names not published</span></div>
+          <div><b>Published detail</b><span id="dialog-published">AKC champion lines, sale-pending status, price, sex, coat, and color.</span></div>
+          <div><b>Next step</b><span id="dialog-next">Contact Lyn to verify current status.</span></div>
+        </div>
+        <a class="button primary" href="mailto:lynfils@yahoo.com?subject=Happily%20puppy%20status%20check">Contact Lyn about status</a>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    const filters = Array.from(document.querySelectorAll("[data-filter]"));
+    const records = Array.from(document.querySelectorAll(".ledger-record"));
+    const count = document.getElementById("inventory-count");
+    const empty = document.getElementById("inventory-empty");
+    const dialog = document.getElementById("puppy-dialog");
+    const closeButton = document.getElementById("dialog-close");
+    const title = document.getElementById("dialog-title");
+    const summary = document.getElementById("dialog-summary");
+    const status = document.getElementById("dialog-status");
+    const price = document.getElementById("dialog-price");
+    const parents = document.getElementById("dialog-parents");
+    const published = document.getElementById("dialog-published");
+    const next = document.getElementById("dialog-next");
+    const photo = document.getElementById("dialog-photo");
+
+    function visibleRecords() {
+      return records.filter((record) => !record.classList.contains("hidden"));
+    }
+
+    function updateCount() {
+      const visible = visibleRecords().length;
+      const noun = visible === 1 ? "puppy record" : "puppy records";
+      count.textContent = `Showing ${visible} of ${records.length} ${noun}`;
+      empty.classList.toggle("visible", visible === 0);
+    }
+
+    function applyFilters() {
+      const active = Object.fromEntries(filters.map((filter) => [filter.dataset.filter, filter.value]));
+      records.forEach((record) => {
+        const keep = Object.entries(active).every(([key, value]) => value === "all" || record.dataset[key] === value);
+        record.classList.toggle("hidden", !keep);
+      });
+      updateCount();
+    }
+
+    function openRecord(record) {
+      title.textContent = record.dataset.name;
+      summary.textContent = record.dataset.summary;
+      price.textContent = record.dataset.price;
+      parents.textContent = record.dataset.parents;
+      published.textContent = record.dataset.published;
+      next.textContent = record.dataset.next;
+      status.textContent = record.dataset.status === "reserved" ? "Sale pending" : "Available";
+      photo.style.setProperty("--drawer-photo", `url('${record.dataset.photo}')`);
+      dialog.showModal();
+    }
+
+    filters.forEach((filter) => filter.addEventListener("change", applyFilters));
+    records.forEach((record) => {
+      const button = record.querySelector("[data-open]");
+      button.addEventListener("click", () => openRecord(record));
+    });
+    closeButton.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    applyFilters();
+
+    window.__happilyLedgerTests = {
+      recordCount: records.length,
+      filterCount: filters.length,
+      visibleNames() {
+        return visibleRecords().map((record) => record.dataset.name);
+      },
+      setFilter(name, value) {
+        document.getElementById(`${name}-filter`).value = value;
+        applyFilters();
+        return this.visibleNames();
+      },
+      openByName(name) {
+        const record = records.find((item) => item.dataset.name === name);
+        if (!record) return null;
+        openRecord(record);
+        return {
+          title: title.textContent,
+          status: status.textContent,
+          price: price.textContent,
+          parents: parents.textContent
+        };
+      },
+      reset() {
+        filters.forEach((filter) => { filter.value = "all"; });
+        applyFilters();
+      }
+    };
+  </script>
+</body>
+</html>

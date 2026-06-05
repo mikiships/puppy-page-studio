@@ -1310,6 +1310,11 @@
     let active = params.get("site") || "happily";
     if (!previews[active]) active = "happily";
 
+    if (active === "happily") {
+      const destination = new URL("../happily-flagship/", window.location.href);
+      window.location.replace(destination.href);
+    }
+
     function el(tag, className, text) {
       const node = document.createElement(tag);
       if (className) node.className = className;
