@@ -10,18 +10,19 @@
     @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,80..100,500..800&family=Fraunces:opsz,wght@9..144,500..850&family=Manrope:wght@500;650;750;850&display=swap');
 
     :root {
-      --field: #f6f7ea;
-      --paper: #fffdf4;
-      --ink: #12231e;
-      --green: #153f36;
-      --moss: #5d7150;
-      --blue: #3c5d74;
-      --red: #c8452f;
-      --red-dark: #8f2c1d;
-      --gold: #e3b348;
-      --line: rgba(18, 35, 30, .16);
-      --line-dark: rgba(18, 35, 30, .42);
-      --shade: 0 22px 70px rgba(20, 47, 39, .12);
+      --field: #f4f1e8;
+      --paper: #fffaf0;
+      --ink: #18221d;
+      --green: #1f4c3f;
+      --moss: #6b7254;
+      --blue: #526b7f;
+      --red: #b95b42;
+      --red-dark: #843822;
+      --gold: #d6a744;
+      --rose: #f4d7c7;
+      --line: rgba(48, 38, 24, .14);
+      --line-dark: rgba(48, 38, 24, .3);
+      --shade: 0 24px 80px rgba(64, 52, 33, .12);
       --sans: "Manrope", "Avenir Next", Avenir, Helvetica, Arial, sans-serif;
       --display: "Bricolage Grotesque", "Manrope", sans-serif;
       --serif: "Fraunces", Georgia, serif;
@@ -34,11 +35,10 @@
       margin: 0;
       color: var(--ink);
       background:
-        linear-gradient(90deg, rgba(18, 35, 30, .035) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(18, 35, 30, .035) 1px, transparent 1px),
-        radial-gradient(circle at 82% 4%, rgba(227, 179, 72, .2), transparent 24rem),
+        radial-gradient(circle at 80% 4%, rgba(214, 167, 68, .2), transparent 24rem),
+        radial-gradient(circle at 8% 18%, rgba(244, 215, 199, .48), transparent 20rem),
+        linear-gradient(180deg, #f8f4eb 0%, #f1eee3 48%, #f6f1e7 100%),
         var(--field);
-      background-size: 72px 72px, 72px 72px, auto, auto;
       font-family: var(--sans);
       line-height: 1.45;
       letter-spacing: 0;
@@ -58,8 +58,8 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      border-bottom: 1px solid var(--line);
-      background: rgba(246, 247, 234, .93);
+      border-bottom: 1px solid rgba(48, 38, 24, .12);
+      background: rgba(248, 244, 235, .92);
       backdrop-filter: blur(18px);
     }
 
@@ -88,7 +88,7 @@
       height: 34px;
       display: grid;
       place-items: center;
-      border: 1.5px solid var(--ink);
+      border: 1.5px solid rgba(24, 34, 29, .9);
       border-radius: 50%;
       background: var(--paper);
       font-family: var(--serif);
@@ -131,7 +131,7 @@
     }
 
     .hero {
-      padding: 18px 0 56px;
+      padding: 18px 0 60px;
     }
 
     .hero-grid {
@@ -145,7 +145,7 @@
       position: relative;
       min-height: 690px;
       overflow: hidden;
-      border: 1px solid var(--line-dark);
+      border: 1px solid rgba(48, 38, 24, .2);
       border-radius: var(--radius);
       background: #d2c0a7;
       box-shadow: var(--shade);
@@ -155,15 +155,15 @@
       content: "";
       position: absolute;
       inset: 0;
-      border: 10px solid rgba(255, 253, 244, .18);
+      border: 10px solid rgba(255, 250, 240, .2);
       pointer-events: none;
     }
 
     .photo-board img {
       height: 100%;
       object-fit: cover;
-      object-position: center 36%;
-      filter: saturate(1.04) contrast(1.03);
+      object-position: center 35%;
+      filter: saturate(1.08) contrast(1.02) brightness(1.02);
     }
 
     .photo-note {
@@ -175,10 +175,10 @@
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 14px;
       align-items: center;
-      border: 1px solid rgba(255, 253, 244, .75);
+      border: 1px solid rgba(255, 250, 240, .8);
       border-radius: 6px;
       padding: 12px 14px;
-      background: rgba(255, 253, 244, .92);
+      background: rgba(255, 250, 240, .94);
       color: var(--green);
       font-size: 12px;
       font-weight: 850;
@@ -192,7 +192,7 @@
       border-radius: 999px;
       padding: 0 11px;
       color: var(--paper);
-      background: var(--red);
+      background: var(--green);
       font-size: 10px;
       font-weight: 900;
       text-transform: uppercase;
@@ -204,36 +204,37 @@
       grid-template-rows: auto 1fr auto;
       gap: 18px;
       min-height: 690px;
-      border: 1px solid var(--line-dark);
+      border: 1px solid rgba(48, 38, 24, .2);
       border-radius: var(--radius);
       padding: clamp(22px, 3.4vw, 42px);
       background:
-        linear-gradient(135deg, rgba(255, 253, 244, .98), rgba(247, 246, 226, .9)),
+        linear-gradient(135deg, rgba(255, 250, 240, .98), rgba(248, 241, 225, .96)),
         var(--paper);
       box-shadow: var(--shade);
     }
 
     .dossier::before {
-      content: "Sale pending";
+      content: "Current litter";
       position: absolute;
       top: 22px;
       right: 22px;
-      transform: rotate(4deg);
-      border: 2px solid rgba(200, 69, 47, .62);
-      border-radius: 4px;
+      transform: rotate(2deg);
+      border: 1px solid rgba(31, 76, 63, .36);
+      border-radius: 999px;
       padding: 6px 10px;
-      color: var(--red);
+      color: var(--green);
       font-family: var(--display);
       font-size: 12px;
       font-weight: 850;
       text-transform: uppercase;
-      opacity: .86;
+      background: rgba(255, 250, 240, .7);
+      opacity: .9;
     }
 
     .kicker,
     .section-label,
     .mini-label {
-      color: var(--red);
+      color: var(--red-dark);
       font-size: 11px;
       font-weight: 950;
       letter-spacing: .06em;
@@ -251,8 +252,8 @@
 
     .lede {
       max-width: 560px;
-      margin-top: 20px;
-      color: var(--green);
+      margin-top: 18px;
+      color: #29483e;
       font-size: clamp(18px, 1.72vw, 23px);
       font-weight: 650;
       line-height: 1.23;
@@ -262,8 +263,8 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       margin-top: 28px;
-      border-top: 1px solid var(--line-dark);
-      border-bottom: 1px solid var(--line);
+      border-top: 1px solid rgba(48, 38, 24, .24);
+      border-bottom: 1px solid rgba(48, 38, 24, .14);
     }
 
     .facts div {
@@ -308,14 +309,14 @@
       border-radius: 999px;
       padding: 0 18px;
       color: var(--paper);
-      background: var(--ink);
+      background: var(--green);
       font-size: 12px;
       font-weight: 950;
       text-transform: uppercase;
     }
 
     .button.secondary {
-      color: var(--ink);
+      color: var(--green);
       background: transparent;
     }
 
@@ -331,10 +332,10 @@
       gap: 12px;
       align-items: center;
       padding-top: 10px;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid rgba(48, 38, 24, .14);
       font-size: 13px;
       font-weight: 750;
-      color: rgba(18, 35, 30, .78);
+      color: rgba(24, 34, 29, .74);
     }
 
     .trust-strip b {
@@ -917,7 +918,7 @@
           <div>
             <span class="kicker">Current puppies</span>
             <h1 id="hero-title">Two black-and-tan boys.</h1>
-            <p class="lede">They are cute enough to make someone move fast. The page should slow the buyer down just enough to ask Lyn the right questions before a deposit.</p>
+            <p class="lede">Small, glossy, and already spoken for. Start with the puppy you love, then ask Lyn whether the hold is final or the next litter list is open.</p>
             <div class="facts" aria-label="Current listing summary">
               <div>
                 <b>2</b>
@@ -929,26 +930,26 @@
               </div>
               <div>
                 <b>Pending</b>
-                <span>Ask before deposit</span>
+                <span>Current status</span>
               </div>
             </div>
             <div class="hero-actions">
-              <a class="button" href="#puppies">See the boys</a>
-              <a class="button secondary" href="#questions">Questions first</a>
+              <a class="button" href="#puppies">Meet the boys</a>
+              <a class="button secondary" href="#contact">Ask Lyn</a>
             </div>
           </div>
 
           <div class="trust-strip" aria-label="Buyer context">
             <div>
-              <b>What is known</b>
-              <span>Real puppy photos, black-and-tan males, published $1,500 price, sale-pending status.</span>
+              <b>Current page</b>
+              <span>Real puppy photos, black-and-tan males, published $1,500 price, and sale-pending status.</span>
             </div>
             <div>
-              <b>What is missing</b>
+              <b>Next detail</b>
               <span>Parent details, vet record, vaccine and deworming dates, deposit terms, and pickup timing.</span>
             </div>
             <div>
-              <b>Right next step</b>
+              <b>Buyer path</b>
               <span>Ask whether either hold is final, then ask about the next litter list if both boys are spoken for.</span>
             </div>
           </div>
@@ -961,9 +962,9 @@
         <div class="section-head">
           <div>
             <span class="section-label">Puppies on the current page</span>
-            <h2 id="puppies-title">The photos sell the puppy. The record protects the buyer.</h2>
+            <h2 id="puppies-title">A puppy page should feel like choosing, not decoding.</h2>
           </div>
-          <p>Each record keeps the emotional click close to the practical proof, so the page does not become a blind checkout for a sale-pending puppy.</p>
+          <p>Each boy gets the big photo, the price, the hold status, and the practical notes in one place. Families can fall in love without losing the thread.</p>
         </div>
 
         <div class="puppy-list">
@@ -976,7 +977,7 @@
               <div>
                 <span class="mini-label">Male 1</span>
                 <h3>The first black-and-tan boy.</h3>
-                <p>Short-haired, tiny, and already listed with a buyer hold. Admire him, then verify whether the hold is final before anyone treats the page like he is available.</p>
+                <p>Short-haired, compact, and bright-faced in the current litter photo. He reads like the puppy someone screenshots first, even with the buyer hold already marked.</p>
                 <dl class="record-data">
                   <div>
                     <dt>Sex</dt>
@@ -994,8 +995,8 @@
               </div>
               <aside class="evidence" aria-label="Male 1 buyer evidence">
                 <div>
-                  <span class="mini-label">Shown publicly</span>
-                  <h4>Enough to inquire, not enough to deposit blind.</h4>
+                  <span class="mini-label">Current notes</span>
+                  <h4>Why a family would ask about him.</h4>
                   <ul>
                     <li>Current puppy photo</li>
                     <li>Sale-pending status</li>
@@ -1003,7 +1004,7 @@
                   </ul>
                 </div>
                 <div class="ask">
-                  <span class="mini-label">Ask Lyn</span>
+                  <span class="mini-label">Confirm with Lyn</span>
                   <ul class="question-list">
                     <li>Is the hold final?</li>
                     <li>Who are the parents?</li>
@@ -1023,7 +1024,7 @@
               <div>
                 <span class="mini-label">Male 2</span>
                 <h3>The second black-and-tan boy.</h3>
-                <p>Another current boy from the same litter. If this is the one a family loves, the page should route them toward hold status, backup-list options, and next litter timing.</p>
+                <p>Another current boy from the same litter, shown with his own photo and sale-pending state. If this is the one a family wants, the next step is a clear ask, not a mystery.</p>
                 <dl class="record-data">
                   <div>
                     <dt>Sex</dt>
@@ -1041,8 +1042,8 @@
               </div>
               <aside class="evidence" aria-label="Male 2 buyer evidence">
                 <div>
-                  <span class="mini-label">Shown publicly</span>
-                  <h4>Sale pending changes the whole inquiry.</h4>
+                  <span class="mini-label">Current notes</span>
+                  <h4>Why he still belongs on the page.</h4>
                   <ul>
                     <li>Current puppy photo</li>
                     <li>Sale-pending status</li>
@@ -1050,7 +1051,7 @@
                   </ul>
                 </div>
                 <div class="ask">
-                  <span class="mini-label">Ask Lyn</span>
+                  <span class="mini-label">Confirm with Lyn</span>
                   <ul class="question-list">
                     <li>Can a hold fall through?</li>
                     <li>Is a waitlist open?</li>
@@ -1072,8 +1073,8 @@
         </figure>
         <div class="breeder-copy">
           <span class="section-label">The person behind the litter</span>
-          <h2 id="breeder-title">The page should feel like Lyn is handing you the puppy record.</h2>
-          <p>Families do not need a glossy kennel brochure first. They need the puppy they came for, the breeder who raises them, and a clean path to confirm the details that matter.</p>
+          <h2 id="breeder-title">The best puppy pages still feel personal.</h2>
+          <p>The page should keep Lyn close to the puppies, not hidden behind a form. Families want to know who raised the litter, where the puppy comes from, and what to ask next.</p>
           <div class="breeder-facts">
             <div>
               <b>Breed focus</b>
@@ -1081,7 +1082,7 @@
             </div>
             <div>
               <b>Status clarity</b>
-              <span>Both boys are marked sale pending, so the page makes that impossible to miss.</span>
+              <span>Both boys are marked sale pending, so the page says it plainly without burying the puppy photos.</span>
             </div>
             <div>
               <b>Buyer path</b>
@@ -1097,9 +1098,9 @@
         <div class="section-head">
           <div>
             <span class="section-label">Before a deposit</span>
-            <h2 id="questions-title">The boring questions are the trust layer.</h2>
+            <h2 id="questions-title">Trust should feel like good care, not fine print.</h2>
           </div>
-          <p>Sale-pending puppies can still be worth asking about. The page earns trust by making the practical questions visible before money enters the conversation.</p>
+          <p>Sale-pending puppies can still be worth asking about. The details sit in the buyer path so nobody has to choose between excitement and caution.</p>
         </div>
 
         <div class="questions">
@@ -1132,7 +1133,7 @@
         <div>
           <span class="section-label">Contact</span>
           <h2 id="contact-title">Ask about the boys, then ask about the next litter.</h2>
-          <p>Send the puppy you are asking about, confirm the sale-pending status, and request parent, health, deposit, and pickup details before moving forward.</p>
+          <p>Send the puppy you are asking about, confirm the sale-pending status, and ask what the next open litter path looks like.</p>
         </div>
         <div class="contact-list" aria-label="Contact options">
           <a href="https://www.happily-ever-after-dachshunds.com/">Happily Ever After Dachshunds website</a>
